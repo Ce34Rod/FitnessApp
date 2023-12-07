@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title>Lancer's Fitness App</title>
+</head>
+<body>
+
+<div class="top-bar">
+    <h1>Lancer's Fitness</h1>
+    <a th:href="@{/create-account}" class="btn btn-primary">Create Account</a>
+</div>
+
+<div class="content-wrap flex-grow-1">
+    <!-- Feature 1: Exercise Search -->
+    <section class="feature">
+        <h2>Search for Exercises</h2>
+        <p>Find the best exercises tailored to your needs.</p>
+<!--        <img th:src="@{/images/exercise-search.jpg}" alt="Exercise Search" class="feature-image"/>-->
+    </section>
+
+    <!-- Feature 2: Schedule Exercises -->
+    <section class="feature">
+        <h2>Schedule Your Exercises</h2>
+        <p>Plan your workouts with our intuitive calendar.</p>
+<!--        <img th:src="@{/images/exercise-schedule.jpg}" alt="Exercise Schedule" class="feature-image"/>-->
+    </section>
+
+    <!-- Feature 3: Track Progress -->
+    <section class="feature">
+        <h2>Track Your Progress</h2>
+        <p>Monitor your improvements and milestones.</p>
+<!--        <img th:src="@{/images/progress-tracking.jpg}" alt="Progress Tracking" class="feature-image"/>-->
+    </section>
+
+    <!-- Feature 4: Better Health -->
+    <section class="feature">
+        <h2>Better Your Health</h2>
+        <p>Engage in activities that boost your overall well-being.</p>
+<!--        <img th:src="@{/images/better-health.jpg}" alt="Better Health" class="feature-image"/>-->
+    </section>
+</div>
+
+<div th:replace="fragments :: footer"></div>
+
+</body>
+</html>
+
+

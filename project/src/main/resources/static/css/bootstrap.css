@@ -1,0 +1,54 @@
+body, html {
+    height: 100%;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #c06000;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+}
+
+.content-wrap{
+flex: 1;
+}
+
+.footer {
+    background-color: #f5f5f5;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #c06000 ;
+}
+.top-bar h1 {
+    margin: 0;
+}
+
+.btn-primary {
+    margin-right: 10px;
+}
+.feature {
+    text-align: center;
+    padding: 20px;
+}
+
+.feature h2 {
+    margin-top: 20px;
+}
+
+.feature-image {
+    width: 80%;
+    height: auto;
+    margin: 10px 0;
+
+}
+
+

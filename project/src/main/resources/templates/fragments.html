@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <title>Lancer's Fitness App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:fragment="header">
+    <header>
+        <div class="company-name">Lancer's Fitness App</div>
+        <nav>
+            <ul classs="nav">
+                <li class="nav-item1"><a th:href="@{/account}">Account Management</a></li>
+                <li class="nav-item2"><a th:href="@{/workout-plans}">Workout Plans</a></li>
+                <li class="nav-item3"><a th:href="@{/search-exercises}">Search Exercises</a></li>
+            </ul>
+        </nav>
+    </header>
+</div>
+<div th:fragment="footer">
+    <footer class="footer">
+        Ⓒ Lancers Fitness 2023
+    </footer>
+</div>
+</body>
+</html>
