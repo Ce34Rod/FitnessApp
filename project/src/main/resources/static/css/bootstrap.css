@@ -5,13 +5,13 @@ body {
     display: flex;
     flex-direction: column;
     background-color: #c06000;
-        min-height: 100vh;
-        margin: 0;
-        padding: 0;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 .content-wrap{
-flex: 1;
+    flex: 1;
 }
 
 .footer {
@@ -41,14 +41,24 @@ flex: 1;
 }
 
 .feature h2 {
-    margin-top: 20px;
+    margin-top: -20px;
+    margin-bottom: 5px;
+}
+
+.feature p {
+    margin-top: 5px;
+    margin-bottom: 25px;
 }
 
 .feature-image {
-    width: 80%;
+    max-width: 75px;
+    width: 100%;
     height: auto;
-    margin: 10px 0;
-
+    margin: 10px auto;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 0px;
 }
+
 
 
