@@ -15,7 +15,7 @@ body {
 }
 
 .footer {
-    background-color: #f5f5f5;
+    background-color: #c06000;
     text-align: center;
     padding: 10px 0;
     width: 100%;
@@ -29,6 +29,7 @@ body {
     background-color: #c06000 ;
 }
 .top-bar h1 {
+    font-family:  Impact,Haettenschweiler,Franklin Gothic Bold,Charcoal,Helvetica Inserat,Bitstream Vera Sans Bold,Arial Black,sans serif;
     margin: 0;
 }
 
@@ -41,11 +42,14 @@ body {
 }
 
 .feature h2 {
+    font-family: Bodoni MT,Didot,Didot LT STD,Hoefler Text,Garamond,Times New Roman,serif;
+    font-weight: bolder;
     margin-top: -20px;
     margin-bottom: 5px;
 }
 
 .feature p {
+    font-family: Tahoma,Verdana,Segoe,sans-serif;
     margin-top: 5px;
     margin-bottom: 25px;
 }
