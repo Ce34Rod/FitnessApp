@@ -43,8 +43,9 @@ public class AuthenticationController {
         session.setAttribute(userSessionKey, user.getId());
     }
 
-    @GetMapping("/register")
+    @GetMapping("/create-account")
     public String displayRegistrationForm(Model model, HttpSession session) {
+ development
         model.addAttribute("registerFormDTO", new RegisterFormDTO());
         model.addAttribute("title", "Register");
         return "register";
@@ -52,24 +53,24 @@ public class AuthenticationController {
     @PostMapping("/register")
     public String processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO, Errors errors, HttpServletRequest request, Model model) {
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Register");
-            return "register";
+            model.addAttribute("title", "create-account");
+            return "create-account";
         }
 
         User existingUser = userRepository.findByUsername(registerFormDTO.getUserName());
 
         if (existingUser != null) {
             errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
-            model.addAttribute("title", "Register");
-            return "register";
+            model.addAttribute("title", "create-account");
+            return "create-account";
         }
-        //TODO: Verify both passwords inputted match
+
         String password = registerFormDTO.getPassword();
         String verifyPassword = registerFormDTO.getVerifyPassword();
         if (!password.equals(verifyPassword)) {
             errors.rejectValue("password", "passwords.mismatch", "Passwords do not match");
-            model.addAttribute("title", "Register");
-            return "register";
+            model.addAttribute("title", "create-account");
+            return "create-account";
         }
 
         User newUser = new User(registerFormDTO.getUserName(), registerFormDTO.getPassword());
