@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title>Login - Lancer's Fitness</title>
+</head>
+<body>
+<div class="top-bar">
+    <h1>Lancer's Fitness</h1>
+</div>
+<div class="content-wrap">
+    <div class="login-form-container">
+        <h2>Login To Your Account</h2>
+        <form th:action="@{/login}" method="post" th:object="${loginFormDTO}">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" th:field="*{userName}" id="username" class="form-control"/>
+                <p class="error" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></p>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" th:field="*{password}" id="password" class="form-control"/>
+                <p class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+</div>
+<div class="footer" th:replace="fragments :: footer"></div>
+</body>
+</html>
+

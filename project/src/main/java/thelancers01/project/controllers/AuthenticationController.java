@@ -45,11 +45,10 @@ public class AuthenticationController {
 
     @GetMapping("/register")
     public String displayRegistrationForm(Model model, HttpSession session) {
-        model.addAttribute(new RegisterFormDTO());
+        model.addAttribute("registerFormDTO", new RegisterFormDTO());
         model.addAttribute("title", "Register");
         return "register";
     }
-
     @PostMapping("/register")
     public String processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO, Errors errors, HttpServletRequest request, Model model) {
         if (errors.hasErrors()) {
@@ -76,7 +75,7 @@ public class AuthenticationController {
         User newUser = new User(registerFormDTO.getUserName(), registerFormDTO.getPassword());
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
-        return "redirect:/homepage";
+        return "redirect:/dashboard";
     }
 
     @GetMapping("/login")
@@ -97,21 +96,20 @@ public class AuthenticationController {
 
         String password = loginFormDTO.getPassword();
 
-        if (theUser == null || theUser.isMatchingPassword(password)) {
-            errors.rejectValue("password",
-                    "login.invalid",
-                    "Credentials invalid. Please try again with correct username/password combination");
+        if (theUser != null && theUser.isMatchingPassword(password)) {
+            setUserInSession(request.getSession(), theUser);
+            return "redirect:/dashboard";
+        } else {
+            errors.rejectValue("password", "login.invalid", "Invalid username or password");
+            model.addAttribute("title", "Log In");
             return "login";
         }
-
-        setUserInSession(request.getSession(), theUser);
-        return "redirect:/homepage";
     }
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
         request.getSession().invalidate();
-        return "redirect:/homepage";
+        return "redirect:/";
     }
 
 }

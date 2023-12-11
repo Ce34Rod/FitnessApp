@@ -1,0 +1,198 @@
+body, html {
+    height: 100%;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #c06000;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.content-wrap{
+    flex: 1 0;
+}
+
+.footer {
+    flex-shrink: 0;
+    background-color: #c06000;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #c06000 ;
+}
+.top-bar h1 {
+    font-family:  Impact,Haettenschweiler,Franklin Gothic Bold,Charcoal,Helvetica Inserat,Bitstream Vera Sans Bold,Arial Black,sans serif;
+    margin: 0;
+}
+
+.button-container {
+     display: flex;
+     gap: 10px;
+}
+
+.btn-primary1 {
+    margin-right: 10px;
+}
+.feature {
+    text-align: center;
+    padding: 20px;
+}
+
+.feature h2 {
+    font-family: Bodoni MT,Didot,Didot LT STD,Hoefler Text,Garamond,Times New Roman,serif;
+    font-weight: bolder;
+    margin-top: -20px;
+    margin-bottom: 5px;
+}
+
+.feature p {
+    font-family: Tahoma,Verdana,Segoe,sans-serif;
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+
+.feature-image {
+    max-width: 75px;
+    width: 100%;
+    height: auto;
+    margin: 10px auto;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+.registration-form-container {
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+
+.btn-primary {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+.login-form-container {
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+    font-family: Tahoma,Verdana,Segoe,sans-serif;
+
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.account-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.todays-exercises {
+    text-align: center;
+    margin-bottom: 40px;
+
+}
+.exercise-description {
+    font-family: Bodoni MT,Didot,Didot LT STD,Hoefler Text,Garamond,Times New Roman,serif;
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+
+.dashboard-btn {
+    display: inline-block;
+    width: auto;
+    padding: 10px 20px;
+    text-align: center;
+    margin: 10px;
+    margin-top: 20px;
+}
+
+.dashboard-feature {
+    text-align: center;
+    margin: 20px auto;
+}
+.feature-description {
+    font-family: Bodoni MT,Didot,Didot LT STD,Hoefler Text,Garamond,Times New Roman,serif;
+    font-weight: bolder;
+    font-size: 25px;
+}
+.account-management-container {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 300px
+}
+.confirmation-container {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.confirmation-container h1 {
+    margin-bottom: 20px;
+}
+.change-password-section,
+.delete-account-section {
+    margin-bottom: 30px;
+     text-align: center;
+     margin-top: 30px;
+     padding: 20px;
+}
+.body-content {
+    flex: 1 0 auto;
+}
+
+
+
+
