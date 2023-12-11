@@ -2,15 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments :: head">
     <meta charset="UTF-8"/>
-    <title>Lancer's Fitness App</title>
+    <title></title>
 </head>
 <body>
 
 <div class="top-bar">
 
     <h1 >Lancer's Fitness</h1>
+    <div class="button-container">
+    <a th:href="@{/login}" class="btn btn-primary">Login</a>
+    <a th:href="@{/register}" class="btn btn-primary">Register</a>
+    </div>
 
-    <a th:href="@{/create-account}" class="btn btn-primary">Create Account</a>
 </div>
 
 <div class="content-wrap flex-grow-1">
@@ -39,7 +42,7 @@
     </section>
 </div>
 
-<div th:replace="fragments :: footer"></div>
+<div class="footer" th:replace="fragments :: footer"></div>
 
 </body>
 
