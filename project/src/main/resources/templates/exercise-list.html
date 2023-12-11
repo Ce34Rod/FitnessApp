@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Exercise List</title>
+</head>
+<body>
+
+<h1>Exercise List for Body Part: <span th:text="${bodyPart}"></span></h1>
+
+<!-- Display the list of exercises -->
+<ul>
+    <li th:each="exercise : ${exerciseList}" th:text="${exercise.name}"></li>
+</ul>
+
+</body>
+</html>
