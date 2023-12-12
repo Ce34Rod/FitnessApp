@@ -45,7 +45,7 @@ public class AuthenticationController {
 
     @GetMapping("/create-account")
     public String displayRegistrationForm(Model model, HttpSession session) {
- development
+
         model.addAttribute("registerFormDTO", new RegisterFormDTO());
         model.addAttribute("title", "Register");
         return "register";
