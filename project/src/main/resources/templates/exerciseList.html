@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+
+</head>
+<body>
+
+<h1>Exercise List</h1>
+
+<form th:action="@{/search}" method="get">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" th:value="${name}" />
+
+    <label for="type">Type:</label>
+    <input type="text" id="type" name="type" th:value="${type}" />
+
+    <label for="muscle">Muscle:</label>
+    <input type="text" id="muscle" name="muscle" th:value="${muscle}" />
+
+    <label for="difficulty">Difficulty:</label>
+    <input type="text" id="difficulty" name="difficulty" th:value="${difficulty}" />
+
+    <button type="submit">Search</button>
+</form>
+
+<div th:if="${exercises}">
+    <h2>Results:</h2>
+    <ul>
+        <li th:each="exercise : ${exercises}">
+            <span th:text="${exercise.name}"></span>
+        </li>
+    </ul>
+</div>
+<div class="footer" th:replace="fragments :: footer"></div>
+</body>
+</html>
