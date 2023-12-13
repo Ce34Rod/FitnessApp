@@ -3,8 +3,11 @@ package thelancers01.project.models;
 public class Exercise {
 
     private String name;
+    private String type;
+    private String muscle;
+    private String difficulty;
 
-    private String description;
+    // Getters and setters
 
     public String getName() {
         return name;
@@ -14,11 +17,27 @@ public class Exercise {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getType() {
+        return type;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getMuscle() {
+        return muscle;
+    }
+
+    public void setMuscle(String muscle) {
+        this.muscle = muscle;
+    }
+
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
     }
 }
