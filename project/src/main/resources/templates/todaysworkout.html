@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+<img src="media/logo.png" alt="runningwoman">
+
+<div style = "position: relative; left:1500px; top:2px ;"; class="dropdown">
+    <button class="dropbtn"></button>
+    <div class="dropdown-content" style="right:0">
+        <a href="http://127.0.0.1:5501/workout.html"> Workout</a>
+        <a href="http://127.0.0.1:5501/stats.html"> Stats</a>
+        <a href="http://127.0.0.1:5501/rewards.html"> Rewards</a>
+    </div>
+</div>
+
+<text style = "position: absolute; left: 850px; top:100px"> SELECT YOUR WORKOUT</text>
+
+<button style = "position: relative; left:1200px; top:2px ;"
+        type="button" class="loginButton"
+        tabindex="0" title="Sign in" aria-label="Sign in" onclick=//127.0.0.1:5500/signup.html>Sign in</button>
+<img th:src="@{/images/cardio.png}" alt="Cardio" class="feature-image"/>
+<img th:src="@{/images/weighttraining.png}" alt="Weight Training" class="feature-image"/>
+<img th:src="@{/images/calisthenics}" alt="Calisthenics" class="feature-image"/>
+
+
+
+<div class="footer" th:replace="fragments :: footer"></div>
+</body>
+</html>
+
+

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<div class="top-bar">
+    <h1>Lancer's Fitness</h1>
+    <div class="account-actions">
+        <a th:href="@{/account}" class="btn btn-info">Manage Account</a>
+        <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+    </div>
+</div>
+
+</body>
+
+
+</head>
+<body>
+
+<div class="footer" th:replace="fragments :: footer"></div>
+</body>
+
+</html>
