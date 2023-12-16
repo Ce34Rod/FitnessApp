@@ -2,6 +2,7 @@ package thelancers01.project.models;
 
 public class Exercise {
 
+    private Long id;
     private String name;
     private String type;
     private String muscle;
@@ -9,6 +10,7 @@ public class Exercise {
 
     // Getters and setters
 
+    public Long getId() { return id; }
     public String getName() {
         return name;
     }

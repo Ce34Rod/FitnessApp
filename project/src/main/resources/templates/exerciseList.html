@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments :: head">
-
-</head>
+<head th:replace="fragments :: head"></head>
 <body>
 
 <h1>Exercise List</h1>
@@ -26,11 +24,15 @@
 <div th:if="${exercises}">
     <h2>Results:</h2>
     <ul>
+        <!-- Use regular links or buttons for clickable exercises -->
         <li th:each="exercise : ${exercises}">
-            <span th:text="${exercise.name}"></span>
+            <a th:href="@{/details/{id}(id=${exercise.id})}">
+                <span th:text="${exercise.name}"></span>
+            </a>
         </li>
     </ul>
 </div>
+
 <div class="footer" th:replace="fragments :: footer"></div>
 </body>
 </html>
