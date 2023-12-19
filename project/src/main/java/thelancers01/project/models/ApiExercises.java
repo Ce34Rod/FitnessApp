@@ -1,13 +1,16 @@
 package thelancers01.project.models;
 
-public class Exercise {
+import jakarta.persistence.Entity;
+
+@Entity
+public class ApiExercises extends AbstractEntity{
 
     private String name;
     private String type;
     private String muscle;
     private String difficulty;
 
-    // Getters and setters
+
 
     public String getName() {
         return name;
