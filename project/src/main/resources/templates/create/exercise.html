@@ -1,51 +1,62 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
+<head th:replace="~{fragments :: head}">
     <meta charset="UTF-8"/>
+    <title>Create New Exercise - Lancer's Fitness</title>
 </head>
 <body>
-
-<h2>Create New Exercise</h2>
-
-<div class="container">
-    <div class="form-container">
-<form action="/create/exercise" method="post">
-
-    <label th:for="exerciseName">Name</label>
-    <input type="text" th:field="${exercise.name}" required><br>
-
-    <label th:for="exerciseType">Type</label>
-    <select id="exerciseType" name="exerciseType" required>
-        <option value="strength">Strength Training</option>
-        <option value="mobility">Mobility</option>
-        <option value="cardio">Cardio</option>
-        <option value="flexibility">Flexibility</option>
-    </select><br>
-
-    <label th:for="targetMuscles">Target Muscles:</label>
-    <select id="targetMuscles" name="targetMuscles" required>
-        <option value="legs">Legs</option>
-        <option value="arms">Arms</option>
-        <option value="core">Core</option>
-    </select><br>
-
-    <label th:for="exerciseNotes">Notes</label>
-    <textarea id="exerciseNotes" name="exerciseNotes" rows="4" required></textarea><br>
-
-    <button type="submit">Submit</button>
-</form>
+<div class="top-bar">
+    <h1>Lancer's Fitness</h1>
+    <div class="account-actions">
+        <a th:href="@{/userExercises}" class="btn btn-info">User Exercises</a>
+        <a th:href="@{/dashboard}" class="btn btn-info">Dashboard</a>
+        <a th:href="@{/account}" class="btn btn-info">Manage Account</a>
+        <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
     </div>
+</div>
+
+<div class="create-exercise-container">
+    <h2 class="center-text">Create New Exercise</h2>
+
+    <div class="form-container">
+        <form action="/create/exercise" method="post" class="centered-form">
+            <label th:for="exerciseName">Name</label>
+            <input type="text" th:field="${exercise.name}" required><br>
+
+            <label th:for="exerciseType">Type</label>
+            <select id="exerciseType" name="exerciseType" required>
+                <option value="strength">Strength Training</option>
+                <option value="mobility">Mobility</option>
+                <option value="cardio">Cardio</option>
+                <option value="flexibility">Flexibility</option>
+            </select><br>
+
+            <label th:for="targetMuscles">Target Muscles:</label>
+            <select id="targetMuscles" name="targetMuscles" required>
+                <option value="legs">Legs</option>
+                <option value="arms">Arms</option>
+                <option value="core">Core</option>
+            </select><br>
+
+            <label th:for="exerciseNotes">Notes</label>
+            <textarea id="exerciseNotes" name="exerciseNotes" rows="4" required></textarea><br>
+
+            <button type="submit" class="btn btn-submit">Submit</button>
+        </form>
+    </div>
+    <h2 class="center-text">Examples of Exercises You Can Create</h2>
 <div class="exercise-container">
     <div class="exercise-details-box">
         <!-- Exercise details for the first box -->
-        <img src="/images/JumpingJack.png" alt="Exercise Image">
-        <h2>Jumping Jacks</h2>
+        <h2 class="exercise-name">Jumping Jacks</h2>
         <ul>
             <li><strong>Type</strong> Cardio</li>
-            <li><strong>Target Muscles</strong> Full Body Warm Up</li>
-            <li><strong>Notes</strong> Try jumping jacks if you're short on time but need a full-body workout.
-                The tried-and-true exercise works your legs as you jump and land on your feet.
-                But it also activates upper-body muscles as you swing your arms. </li>
+            <li><strong>Target Muscles</strong> Full Body Warm Up.</li>
+            <li><strong>Notes</strong> Jumping jacks are a versatile full-body aerobic exercise that can be performed almost anywhere without any equipment.
+                Starting in a standing position with feet together and arms at your sides, you jump to spread your feet out to the sides while simultaneously raising your arms above your head, forming an "X" shape at the peak.
+                Then, quickly jump back to the starting position, lowering your arms. Aiming for 20-30 repetitions or incorporating them into a timed workout is effective. They offer numerous benefits, including boosting cardiovascular health by raising the heart rate, engaging multiple muscle groups (legs, arms, core) for a comprehensive workout, and enhancing coordination and agility.
+                This makes jumping jacks a practical exercise for all fitness levels. </li>
+            <img src="/images/JumpingJack.png" alt="Exercise Image" class="exercise-image">
         </ul>
     </div>
 </div>
@@ -53,14 +64,15 @@
 <div class="exercise-container">
     <div class="exercise-details-box">
         <!-- Exercise details for the second box -->
-        <img src="/images/JumpingJack.png" alt="Exercise Image">
-        <h2>Jumping Jacks</h2>
+        <h2 class="exercise-name">Plank</h2>
         <ul>
             <li><strong>Type</strong> Cardio</li>
-            <li><strong>Target Muscles</strong> Full Body Warm Up</li>
-            <li><strong>Notes</strong> Try jumping jacks if you're short on time but need a full-body workout.
-                The tried-and-true exercise works your legs as you jump and land on your feet.
-                But it also activates upper-body muscles as you swing your arms. </li>
+            <li><strong>Target Muscles</strong> The core (transversus abdominis, rectus abdominis, and oblique muscles), Shoulders (deltoids), Upper body (lats, triceps, traps, chest, biceps, rhomboids).</li>
+            <li><strong>Notes</strong> Planks are a core-strengthening exercise that targets multiple muscle groups, enhancing stability and posture.
+            To perform a plank, start in a push-up position but with your forearms on the ground, elbows aligned below the shoulders, and arms parallel to the body at about shoulder-width distance.
+            Keep your body in a straight line from head to heels without sagging or arching the back. Engage your core, thighs, and glutes to maintain the position. Aim to hold this pose for 20 to 30 seconds initially, gradually increasing the duration as you build strength.
+            Planks are highly beneficial for improving core strength, which is crucial for stability and reducing the risk of back pain. </li>
+            <img src="/images/plank.png" alt="Exercise Image" class="exercise-image">
         </ul>
     </div>
 </div>
@@ -68,20 +80,20 @@
 <div class="exercise-container">
     <div class="exercise-details-box">
         <!-- Exercise details for the third box -->
-        <img src="/images/JumpingJack.png" alt="Exercise Image">
-        <h2>Jumping Jacks</h2>
+        <h2 class="exercise-name">Jump Squats</h2>
         <ul>
-            <li><strong>Type</strong> Cardio</li>
-            <li><strong>Target Muscles</strong> Full Body Warm Up</li>
-            <li><strong>Notes</strong> Try jumping jacks if you're short on time but need a full-body workout.
-                The tried-and-true exercise works your legs as you jump and land on your feet.
-                But it also activates upper-body muscles as you swing your arms. </li>
+            <li><strong>Type</strong> Cardio And Muscle</li>
+            <li><strong>Target Muscles</strong> Glutes, Quads, Hips, and Hamstrings. </li>
+            <li><strong>Notes</strong> Jump-squats are a dynamic, plyometric exercise that combines traditional squats with an explosive jump for added cardiovascular and strength benefits.
+                Begin by standing with your feet shoulder-width apart. Lower into a squat position by bending your knees and pushing your hips back, keeping your back straight and chest up. From the squat, explosively jump up as high as you can, swinging your arms for momentum. Land softly back into the squat position and immediately jump again. Aim for multiple repetitions, starting with sets of 10-15 jumps.
+                Jump-squats are excellent for building lower body strength, improving balance, and enhancing cardiovascular endurance, making them a great addition to a high-intensity interval training (HIIT) routine. </li>
+            <img src="/images/jump-squats.png" alt="Exercise Image" class="exercise-image">
         </ul>
     </div>
 </div>
 </div>
 
 
-
+<div class="footer" th:replace="~{fragments :: footer}"></div>
 </body>
 </html>

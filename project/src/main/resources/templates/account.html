@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments :: head">
+<head th:replace="~{fragments :: head}">
     <meta charset="UTF-8"/>
-    <title>Account Management - Lancer's Fitness</title>
+    <title></title>
 </head>
 <body>
 <div class="top-bar">
@@ -35,6 +35,6 @@
     </div>
 </div>
 
-<div class="footer" th:replace="fragments :: footer"></div>
+<div class="footer" th:replace="~{fragments :: footer}"></div>
 </body>
 </html>
