@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-import thelancers01.project.models.ApiExercises;
+import thelancers01.project.models.Exercise;
 
 import java.util.Arrays;
 import java.util.List;
@@ -52,10 +52,10 @@ public class ExerciseController {
         RestTemplate restTemplate = new RestTemplate();
 
         try {
-            ResponseEntity<ApiExercises[]> responseEntity = restTemplate.exchange(
-                    url, HttpMethod.GET, new HttpEntity<>(headers), ApiExercises[].class);
+            ResponseEntity<Exercise[]> responseEntity = restTemplate.exchange(
+                    url, HttpMethod.GET, new HttpEntity<>(headers), Exercise[].class);
 
-            List<ApiExercises> exercises = Arrays.asList(responseEntity.getBody());
+            List<Exercise> exercises = Arrays.asList(responseEntity.getBody());
 
             if (name == null && type == null && muscle == null && difficulty == null) {
                 model.addAttribute("exercises", null);

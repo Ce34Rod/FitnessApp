@@ -15,7 +15,7 @@ public class Workout extends AbstractEntity{
             inverseJoinColumns = @JoinColumn(name = "exercise_id")
     )
 
-    private List<ApiExercises> exercises;
+    private List<Exercise> exercises;
 
     public String getName() {
         return name;
@@ -25,11 +25,11 @@ public class Workout extends AbstractEntity{
         this.name = name;
     }
 
-    public List<ApiExercises> getExercises() {
+    public List<Exercise> getExercises() {
         return exercises;
     }
 
-    public void setExercises(List<ApiExercises> exercises) {
+    public void setExercises(List<Exercise> exercises) {
         this.exercises = exercises;
     }
 }
