@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+</head>
+<body>
+
+<h2>Create New Exercise</h2>
+
+<div class="container">
+    <div class="form-container">
+<form action="/create/exercise" method="post">
+
+    <label th:for="exerciseName">Name</label>
+    <input type="text" th:field="${exercise.name}" required><br>
+
+    <label th:for="exerciseType">Type</label>
+    <select id="exerciseType" name="exerciseType" required>
+        <option value="strength">Strength Training</option>
+        <option value="mobility">Mobility</option>
+        <option value="cardio">Cardio</option>
+        <option value="flexibility">Flexibility</option>
+    </select><br>
+
+    <label th:for="targetMuscles">Target Muscles:</label>
+    <select id="targetMuscles" name="targetMuscles" required>
+        <option value="legs">Legs</option>
+        <option value="arms">Arms</option>
+        <option value="core">Core</option>
+    </select><br>
+
+    <label th:for="exerciseNotes">Notes</label>
+    <textarea id="exerciseNotes" name="exerciseNotes" rows="4" required></textarea><br>
+
+    <button type="submit">Submit</button>
+</form>
+    </div>
+<div class="exercise-container">
+    <div class="exercise-details-box">
+        <!-- Exercise details for the first box -->
+        <img src="/images/JumpingJack.png" alt="Exercise Image">
+        <h2>Jumping Jacks</h2>
+        <ul>
+            <li><strong>Type</strong> Cardio</li>
+            <li><strong>Target Muscles</strong> Full Body Warm Up</li>
+            <li><strong>Notes</strong> Try jumping jacks if you're short on time but need a full-body workout.
+                The tried-and-true exercise works your legs as you jump and land on your feet.
+                But it also activates upper-body muscles as you swing your arms. </li>
+        </ul>
+    </div>
+</div>
+
+<div class="exercise-container">
+    <div class="exercise-details-box">
+        <!-- Exercise details for the second box -->
+        <img src="/images/JumpingJack.png" alt="Exercise Image">
+        <h2>Jumping Jacks</h2>
+        <ul>
+            <li><strong>Type</strong> Cardio</li>
+            <li><strong>Target Muscles</strong> Full Body Warm Up</li>
+            <li><strong>Notes</strong> Try jumping jacks if you're short on time but need a full-body workout.
+                The tried-and-true exercise works your legs as you jump and land on your feet.
+                But it also activates upper-body muscles as you swing your arms. </li>
+        </ul>
+    </div>
+</div>
+
+<div class="exercise-container">
+    <div class="exercise-details-box">
+        <!-- Exercise details for the third box -->
+        <img src="/images/JumpingJack.png" alt="Exercise Image">
+        <h2>Jumping Jacks</h2>
+        <ul>
+            <li><strong>Type</strong> Cardio</li>
+            <li><strong>Target Muscles</strong> Full Body Warm Up</li>
+            <li><strong>Notes</strong> Try jumping jacks if you're short on time but need a full-body workout.
+                The tried-and-true exercise works your legs as you jump and land on your feet.
+                But it also activates upper-body muscles as you swing your arms. </li>
+        </ul>
+    </div>
+</div>
+</div>
+
+
+
+</body>
+</html>
