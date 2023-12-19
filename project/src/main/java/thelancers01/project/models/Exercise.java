@@ -33,7 +33,7 @@ public class Exercise {
         return id;
     }
 
-    public Long getId() { return id; }
+
     public String getName() {
         return exerciseName;
     }
