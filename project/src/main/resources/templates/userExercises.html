@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8">
+    <title>User Exercises</title>
+
+</head>
+<body>
+<p th:unless="${exercises} and ${exercises.size()}">no jobs!</p>
+<!--<h2>User Exercises</h2>-->
+
+<!-- Display the exercise just submitted -->
+<!--<h3>Recently Submitted Exercise</h3>-->
+<!--<div th:if="${exercise != null}">-->
+<!--    <div>-->
+<!--        <strong>Name:</strong> <span th:text="${exercise.exerciseName}"></span><br>-->
+<!--        <strong>Type:</strong> <span th:text="${exercise.exerciseType}"></span><br>-->
+<!--        <strong>Target Muscles:</strong> <span th:text="${exercise.targetMuscles}"></span><br>-->
+<!--        <strong>Notes:</strong> <span th:text="${exercise.exerciseNotes}"></span><br>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!-- Display all exercises for the user -->
+<h3>All User Exercises</h3>
+<div th:each="exercise : ${exercises}">
+    <div>
+        <strong>Name:</strong> <span th:text="${exercise.getName}"></span><br>
+        <strong>Type:</strong> <span th:text="${exercise.getExerciseType}"></span><br>
+        <strong>Target Muscles:</strong> <span th:text="${exercise.getTargetMuscles}"></span><br>
+        <strong>Notes:</strong> <span th:text="${exercise.getExerciseNotes}"></span><br>
+    </div>
+    <hr>
+</div>
+<p>TODO: CREATE A CREATE NEW EXERCISE BUTTON</p>
+</body>
+</html>
