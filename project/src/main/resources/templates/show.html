@@ -1,0 +1,19 @@
+<!-- src/main/resources/templates/workout/show.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+
+<h1 th:text="${workout.name}"></h1>
+
+<h2>Exercises:</h2>
+<ul>
+    <li th:each="exercise : ${workout.exercises}">
+        <span th:text="${exercise.name}"></span>
+    </li>
+</ul>
+
+<div class="footer" th:replace="fragments :: footer"></div>
+
+</body>
+</html>
