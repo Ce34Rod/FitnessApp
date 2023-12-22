@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments :: head">
+<head th:replace="~{fragments :: head}"">
     <meta charset="UTF-8"/>
     <title></title>
 </head>
@@ -13,6 +13,6 @@
     <p>Your account has been permanently deleted. We're sorry to see you go!</p>
     <a th:href="@{/}" class="btn btn-primary">Return to Home</a>
 </div>
-<div class="footer" th:replace="fragments :: footer"></div>
+<div class="footer" th:replace="~{fragments :: footer}"></div>
 </body>
 </html>

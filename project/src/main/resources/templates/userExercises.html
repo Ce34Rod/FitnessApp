@@ -1,36 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments :: head">
+<head th:replace="~{fragments :: head}">
     <meta charset="UTF-8">
-    <title>User Exercises</title>
-
+    <title>All User Exercises - Lancer's Fitness</title>
 </head>
 <body>
-<p th:unless="${exercises} and ${exercises.size()}">no jobs!</p>
-<!--<h2>User Exercises</h2>-->
-
-<!-- Display the exercise just submitted -->
-<!--<h3>Recently Submitted Exercise</h3>-->
-<!--<div th:if="${exercise != null}">-->
-<!--    <div>-->
-<!--        <strong>Name:</strong> <span th:text="${exercise.exerciseName}"></span><br>-->
-<!--        <strong>Type:</strong> <span th:text="${exercise.exerciseType}"></span><br>-->
-<!--        <strong>Target Muscles:</strong> <span th:text="${exercise.targetMuscles}"></span><br>-->
-<!--        <strong>Notes:</strong> <span th:text="${exercise.exerciseNotes}"></span><br>-->
-<!--    </div>-->
-<!--</div>-->
+<div class="top-bar">
+    <h1>Lancer's Fitness</h1>
+    <div class="account-actions">
+        <a th:href="@{/dashboard}" class="btn btn-info">Dashboard</a>
+        <a th:href="@{/account}" class="btn btn-info">Manage Account</a>
+        <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+    </div>
+</div>
+<p th:unless="${exercises} and ${exercises.size()}">No exercises found!</p>
 
 <!-- Display all exercises for the user -->
-<h3>All User Exercises</h3>
-<div th:each="exercise : ${exercises}">
-    <div>
-        <strong>Name:</strong> <span th:text="${exercise.getName}"></span><br>
-        <strong>Type:</strong> <span th:text="${exercise.getExerciseType}"></span><br>
-        <strong>Target Muscles:</strong> <span th:text="${exercise.getTargetMuscles}"></span><br>
-        <strong>Notes:</strong> <span th:text="${exercise.getExerciseNotes}"></span><br>
+<section class="All-User-Exercises-Header">
+    <h1>All User Exercises</h1>
+    <p class="User-Exercises-Detail">Add your exercises to your workout plan or delete ones you are no longer interested in.</p>
+</section>
+
+<form th:action="@{/update-workout}" method="post">
+    <div th:each="exercise : ${exercises}">
+        <div class="exercise-row">
+            <div class="exercise-details">
+                <strong>Name:</strong> <span th:text="${exercise.getName}"></span><br>
+                <strong>Type:</strong> <span th:text="${exercise.getExerciseType}"></span><br>
+                <strong>Target Muscles:</strong> <span th:text="${exercise.getTargetMuscles}"></span><br>
+                <strong>Notes:</strong> <span th:text="${exercise.getExerciseNotes}"></span>
+            </div>
+            <input type="checkbox" th:value="${exercise.id}" name="selectedExercises" class="exercise-checkbox" />
+        </div>
+        <hr>
     </div>
-    <hr>
+
+    <section class="Exercise-Buttons">
+        <button type="submit" name="action" value="add" class="btn btn-submit">Add Selected to Workout</button>
+        <button type="submit" name="action" value="delete" class="btn btn-danger">Delete Selected</button>
+    </section>
+</form>
+
+<div class="create-exercise-button">
+    <a th:href="@{/create/exercise}" class="btn btn-primary2">Create More Exercises!</a>
 </div>
-<p>TODO: CREATE A CREATE NEW EXERCISE BUTTON</p>
+
+<div class="footer" th:replace="~{fragments :: footer}"></div>
 </body>
 </html>
