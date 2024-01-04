@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments :: head">
+<head th:replace="~{fragments :: head}">
     <meta charset="UTF-8"/>
     <title></title>
 </head>
@@ -17,7 +17,7 @@
 </div>
 
 <div class="content-wrap flex-grow-1">
-    <section class = "feature">
+    <section  class="feature">
         <h2>Search for Exercises</h2>
         <p>Find the best exercises tailored to your needs</p>
         <img th:src="@{/images/exercise-search.png}" alt="Exercise Search" class="feature-image"/>
@@ -43,9 +43,6 @@
     </section>
 </div>
 
-<div class="footer" th:replace="fragments :: footer"></div>
-
+<div class="footer" th:replace="~{fragments :: footer}"></div>
 </body>
-
 </html>
-

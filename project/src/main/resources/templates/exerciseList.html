@@ -1,13 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments :: head"></head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head}">
+    <meta charset="UTF-8"/>
+    <title>Exercise Search - Lancer's Fitness</title>
+</head>
 <body>
+<div class="top-bar">
+    <h1>Lancer's Fitness</h1>
+    <div class="account-actions">
+        <a th:href="@{/userExercises}" class="btn btn-info">User Exercises</a>
+        <a th:href="@{/dashboard}" class="btn btn-info">Dashboard</a>
+        <a th:href="@{/account}" class="btn btn-info">Manage Account</a>
+        <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+    </div>
+</div>
+<h1 style="text-align: center;">Search For An Exercise</h1>
 
-<h1>Exercise List</h1>
-
-<form th:action="@{/search}" method="get">
+<form th:action="@{/search}" method="get" style="text-align: center;">
     <label for="name">Name:</label>
-    <input type="text" id="name" name="name" th:value="${name}" />
+    <input type="text" id="name" name="name" th:value="${name}" /><br>
 
     <label for="type">Type:</label>
     <select id="type" name="type" th:value="${type}">
@@ -53,15 +64,20 @@
     <button type="submit">Search</button>
 </form>
 
-<div th:if="${exercises != null}">
-    <h2>Results:</h2>
-    <ul>
-        <!-- Display exercises with "Add to Workout" button -->
+
+<div th:if="${exercises != null}" style="text-align: center;">
+    <h2 style="color: blue; font-weight: bold;">Results:</h2>
+    <ul style="list-style: none; padding: 0;">
         <li th:each="exercise : ${exercises}">
-            <span th:text="${exercise.name}"></span>
-            <button type="button" th:onclick="'addToWorkout(' + ${exercise.id} + ')'" class="add-to-workout-btn">Add to Workout</button>
+            <a th:href="@{/details/{id}(id=${exercise.id})}" style="color: blue;">
+                <span th:text="${exercise.name}"></span>
+            </a>
+
         </li>
     </ul>
+</div>
+<div class="create-exercise-button" style="text-align: center; margin-bottom: 280px;">
+    <a th:href="@{/create/exercise}" class="btn btn-primary">Can't find your exercise? Create one here!</a>
 </div>
 
 <div class="footer" th:replace="fragments :: footer"></div>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments :: head">
+<head th:replace="~{fragments :: head}">
     <meta charset="UTF-8"/>
     <title></title>
 </head>
@@ -8,6 +8,7 @@
 <div class="top-bar">
     <h1>Lancer's Fitness</h1>
     <div class="account-actions">
+        <a th:href="@{/userExercises}" class="btn btn-info">User Exercises</a>
         <a th:href="@{/account}" class="btn btn-info">Manage Account</a>
         <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
     </div>
@@ -34,7 +35,7 @@
         <a th:href="@{/track-progress}" class="btn btn-primary dashboard-btn">Track</a>
     </section>
 </div>
-
-<div class="footer" th:replace="fragments :: footer"></div>
+<section class="footerSpace"> </section>
+<div class="footer" th:replace="~{fragments :: footer}"></div>
 </body>
 </html>
