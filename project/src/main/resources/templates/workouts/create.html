@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+</head>
+<body>
+
+<h2>Create A New Workout</h2>
+
+<form action="/workouts/create" method="post">
+    <label th:for="name">Name</label>
+    <input type="text" id="name" name="name" required><br>
+
+<!--    <label for="workoutType">Select Workout Type:</label>-->
+<!--    <select id="workoutType" name="workoutType">-->
+<!--        <option value="strength">Strength Training</option>-->
+<!--        <option value="cardio">Cardio</option>-->
+<!--        <option value="flexibility">Flexibility</option>-->
+<!--    </select>-->
+    <label th:for="workoutDescription">Workout Description:</label>
+    <input type="text" id="workoutDescription" name="workoutDescription" required><br>
+
+
+    <label th:for="workoutDetails">Workout Details</label>
+    <textarea id="workoutDetails" name="workoutDetails" required></textarea><br>
+
+
+<!--    <label th:for="exerciseNotes">Notes</label>-->
+<!--    <textarea id="exerciseNotes" name="exerciseNotes" rows="4" required></textarea><br>-->
+
+    <br>
+
+    <input type="submit" value="Save Workout">
+
+</form>
+
+</body>
+</html>
