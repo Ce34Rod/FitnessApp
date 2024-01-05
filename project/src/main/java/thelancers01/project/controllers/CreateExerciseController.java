@@ -13,37 +13,31 @@ import java.util.List;
 import thelancers01.project.models.Exercise;
 import thelancers01.project.models.data.ExerciseRepository;
 
-//TODO:  Test for persistence
-    @Controller
-    @RequestMapping("create")
-    public class CreateExerciseController {
 
-        public static List<Exercise> exercises = new ArrayList<>();
+@Controller
+@RequestMapping("exercise")
+public class CreateExerciseController {
+
+    public static List<Exercise> exercises = new ArrayList<>();
 
     @Autowired
     private ExerciseRepository exerciseRepository;
 
-        @GetMapping("exercise")
-        public String ViewCreateAnExercise(Model model) {
+    @GetMapping("create")
+    public String ViewCreateAnExercise(Model model) {
 
-            model.addAttribute(new Exercise());
-            return "create/exercise";
-        }
-
-
-        @PostMapping("exercise")
-        public String submitForm(@ModelAttribute @Valid Exercise newExercise,
-//                @RequestParam String exerciseName,
-//                @RequestParam String exerciseType,
-//                @RequestParam String targetMuscles,
-//                @RequestParam String exerciseNotes,
-                Model model) {
-
-            exerciseRepository.save(newExercise);
-
-//            exercises.add(new Exercise(exerciseName, exerciseType, targetMuscles, exerciseNotes));
-            return "redirect:/userExercises";
-        }
-
-
+        model.addAttribute(new Exercise());
+        return "create/exercise";
     }
+
+
+    @PostMapping("create")
+    public String submitForm(@ModelAttribute @Valid Exercise newExercise, Model model) {
+
+        exerciseRepository.save(newExercise);
+
+        return "redirect:/userExercises";
+    }
+
+
+}
