@@ -3,7 +3,9 @@ package thelancers01.project.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,15 +25,21 @@ public class Workoutb {
     private String workoutDescription;
     //private List<Exercise> exerciseList = new ArrayList<>();
 
+    @ManyToMany
+    private List<Exercise> exercises = new ArrayList<>();
+    public List<Exercise> getExercises(){return exercises;}
+    public void setExercises(List<Exercise> exercises) {this.exercises = exercises;}
 
-    public Workoutb(int id, String name, String workoutDetails, String workoutType, String targetMuscles, String workoutDescription, List exerciseList) {
+    public Workoutb(int id, String name, String workoutDetails, String workoutDescription, List<Exercise> exerciseList) {
         this.id = id;
         this.name = name;
-       // this.workoutName = workoutName;
         this.workoutDetails = workoutDetails;
+        this.workoutDescription = workoutDescription;
+        this.exercises = exerciseList;
+        // this.workoutName = workoutName;
 //        this.workoutType = workoutType;
 //        this.targetMuscles = targetMuscles;
-        this.workoutDescription = workoutDescription;
+
        // this.exerciseList = exerciseList;
     }
 

@@ -30,6 +30,15 @@
 
     <br>
 
+
+    <div>
+        <label th:for="exercises">Exercises: </label>
+        <th:block th:each="exercise : ${exercises}">
+            <input type="checkbox" name="exercises" th:value="${exercise.id}">
+            <label th:text="${exercise.name}"></label>
+        </th:block>
+    </div>
+
     <input type="submit" value="Save Workout">
 
 </form>
