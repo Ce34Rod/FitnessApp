@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8">
+    <title>Your Workouts</title>
+</head>
+<body class="container  body-content">
+<h1 th:text="${workoutb.name}">No Title</h1>
+
+    <div>
+        <p th:text="${'Description: ' + workoutb.getWorkoutDescription}"></p>
+        <p th:text="${'Details:  ' + workoutb.getWorkoutDetails}"></p>
+        <p>
+            Exercises:
+            <ul>
+        <li th:each="exercise : ${workoutb.exercises}">
+            <a th:href="@{'/exercise/view/' + ${exercise.id}}" th:text="${exercise.getName}"></a>
+        </li>
+    </ul>
+    </div>
+</body>
+</html>

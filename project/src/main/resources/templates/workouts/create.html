@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title>Lancer's Fitness</title>
+</head>
+<body>
+
+<div class="top-bar">
+    <h1>Lancer's Fitness</h1>
+    <div class="account-actions">
+        <a th:href="@{/userExercises}" class="btn btn-info">User Exercises</a>
+        <a th:href="@{/dashboard}" class="btn btn-info">Dashboard</a>
+        <a th:href="@{/account}" class="btn btn-info">Manage Account</a>
+        <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+    </div>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: flex-start; padding: 20px;">
+    <div style="width: 45%;">
+        <h2>Create A New Workout</h2>
+
+        <form action="/workouts/index" method="post">
+            <label th:for="name">Name</label>
+            <input type="text" id="name" name="name" required><br>
+
+            <label th:for="workoutDescription">Workout Description:</label>
+            <input type="text" id="workoutDescription" name="workoutDescription" required><br>
+
+            <label th:for="workoutDetails">Workout Details</label>
+            <textarea id="workoutDetails" name="workoutDetails" required></textarea><br>
+
+            <div>
+                <label th:for="exercises">Exercises: </label>
+                <th:block th:each="exercise : ${exercises}">
+                    <input type="checkbox" name="exercises" th:value="${exercise.id}">
+                    <label th:text="${exercise.name}"></label>
+                </th:block>
+            </div>
+
+            <input type="submit" value="Save Workout">
+        </form>
+    </div>
+
+    <div style="width: 45%;">
+        <h1 style="text-align: center;">Search For An Exercise</h1>
+
+        <form th:action="@{/search}" method="get" style="text-align: center;">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" th:value="${name}" /><br>
+
+            <label for="type">Type:</label>
+            <select id="type" name="type" th:value="${type}">
+                <option value="">-- Select Type --</option>
+                <option value="cardio">Cardio</option>
+                <option value="olympic_weightlifting">Olympic Weightlifting</option>
+                <option value="plyometrics">Plyometrics</option>
+                <option value="powerlifting">Powerlifting</option>
+                <option value="strength">Strength</option>
+                <option value="stretching">Stretching</option>
+                <option value="strongman">Strongman</option>
+            </select>
+
+            <label for="muscle">Muscle:</label>
+            <select id="muscle" name="muscle" th:value="${muscle}">
+                <option value="">-- Select Muscle --</option>
+                <option value="abdominals">Abdominals</option>
+                <option value="abductors">Abductors</option>
+                <option value="adductors">Adductors</option>
+                <option value="biceps">Biceps</option>
+                <option value="calves">Calves</option>
+                <option value="chest">Chest</option>
+                <option value="forearms">Forearms</option>
+                <option value="glutes">Glutes</option>
+                <option value="hamstrings">Hamstrings</option>
+                <option value="lats">Lats</option>
+                <option value="lower_back">Lower Back</option>
+                <option value="middle_back">Middle Back</option>
+                <option value="neck">Neck</option>
+                <option value="quadriceps">Quadriceps</option>
+                <option value="traps">Traps</option>
+                <option value="triceps">Triceps</option>
+            </select>
+
+            <label for="difficulty">Difficulty:</label>
+            <select id="difficulty" name="difficulty" th:value="${difficulty}">
+                <option value="">-- Select Difficulty --</option>
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="expert">Expert</option>
+            </select>
+
+            <button type="submit">Search</button>
+        </form>
+
+        <div th:if="${apiExercises != null}" style="text-align: center;">
+            <h2 style="color: black; font-weight: bold;">Results:</h2>
+                <ul style="list-style: none; padding: 0;">
+                    <li th:each="apiExercise : ${apiExercises}">
+                        <label>
+                            <input type="checkbox" name="selectedExercises" th:value="${apiExercise.id}"/>
+                            <span th:text="${apiExercise.name}" style="color: black;"></span>
+                        </label>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="footer" th:replace="fragments :: footer"></div>
+
+</body>
+</html>

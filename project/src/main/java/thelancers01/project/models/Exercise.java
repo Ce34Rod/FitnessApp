@@ -3,7 +3,10 @@ package thelancers01.project.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 @Entity
 public class Exercise {
@@ -18,12 +21,17 @@ public class Exercise {
     private String exerciseType;
     private String targetMuscles;
     private String exerciseNotes;
+    @ManyToMany(mappedBy = "exercises")
+    private List<Workoutb> workoutbs = new ArrayList<>();
+    public List<Workoutb> getWorkoutbs() {return workoutbs;}
 
-    public Exercise(String exerciseName, String exerciseType, String targetMuscles, String exerciseNotes) {
+
+    public Exercise(String exerciseName, String exerciseType, String targetMuscles, String exerciseNotes, List<Workoutb> workoutbs) {
         this.exerciseName = exerciseName;
         this.exerciseType = exerciseType;
         this.targetMuscles = targetMuscles;
         this.exerciseNotes = exerciseNotes;
+        this.workoutbs = workoutbs;
         this.id = nextId;
         nextId++;
     }

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8">
+    <title>Your Workouts</title>
+</head>
+<body>
+
+
+<div>
+    <p th:unless="${workouts} and ${workouts.size()}">You have no saved workouts.</p>
+    <div>
+        <h2>Workouts</h2>
+        <ul>
+            <li th:each="workoutb : ${workouts}">
+                <a th:href="@{'/workouts/view/' + ${workoutb.id}}" th:text="${workoutb.name}"></a>
+            </li>
+        </ul>
+        <a th:href="@{'/workouts/create'}">Add Workout</a>
+    </div>
+</div>
+</body>
+</html>
