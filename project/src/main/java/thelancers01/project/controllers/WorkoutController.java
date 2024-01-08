@@ -19,7 +19,7 @@ public class WorkoutController {
 
     @GetMapping("/{workoutId}")
     public String showWorkout(@PathVariable Long workoutId, Model model) {
-        Optional<Workout> optionalWorkout = workoutRepository.findAllById(workoutId);
+        Optional<Workout> optionalWorkout = workoutRepository.findById(workoutId);
 
         if (optionalWorkout.isPresent()) {
             Workout workout = optionalWorkout.get();
