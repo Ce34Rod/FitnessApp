@@ -69,12 +69,12 @@ public class ExerciseController {
             List<ApiExercise> exercises = Arrays.asList(responseEntity.getBody());
 
             if (name == null && type == null && muscle == null && difficulty == null) {
-                model.addAttribute("exercises", null);
+                model.addAttribute("apiExercises", null);
             } else {
-                model.addAttribute("exercises", exercises);
+                model.addAttribute("apiExercises", exercises);
             }
 
-            return "exerciseList";
+            return "workouts/create";
         } catch (HttpClientErrorException e) {
             System.err.println("Error response from API: " + e.getRawStatusCode() + " " + e.getResponseBodyAsString());
             return "error";
