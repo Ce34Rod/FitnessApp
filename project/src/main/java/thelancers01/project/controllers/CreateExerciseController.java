@@ -27,7 +27,7 @@ public class CreateExerciseController {
     public String ViewCreateAnExercise(Model model) {
 
         model.addAttribute(new Exercise());
-        return "create/exercise";
+        return "exercise/create";
     }
 
 
