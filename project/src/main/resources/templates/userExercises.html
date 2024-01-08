@@ -15,7 +15,7 @@
 </div>
 <p th:unless="${exercises} and ${exercises.size()}">No exercises found!</p>
 
-<!-- Display all exercises for the user -->
+
 <section class="All-User-Exercises-Header">
     <h1>All User Exercises</h1>
     <p class="User-Exercises-Detail">Add your exercises to your workout plan or delete ones you are no longer interested in.</p>
@@ -25,7 +25,9 @@
     <div th:each="exercise : ${exercises}">
         <div class="exercise-row">
             <div class="exercise-details">
-                <strong>Name:</strong> <span th:text="${exercise.getName}"></span><br>
+                <a th:href="@{'/exercise/view/' + ${exercise.id}}" th:text="'Name: ' + ${exercise.getName}"></a>
+                <br>
+<!--                <strong>Name:</strong> <span th:href="@{'/exercise/view' + ${exercise.id}}" th:text="${exercise.getName}"></span><br>-->
                 <strong>Type:</strong> <span th:text="${exercise.getExerciseType}"></span><br>
                 <strong>Target Muscles:</strong> <span th:text="${exercise.getTargetMuscles}"></span><br>
                 <strong>Notes:</strong> <span th:text="${exercise.getExerciseNotes}"></span>

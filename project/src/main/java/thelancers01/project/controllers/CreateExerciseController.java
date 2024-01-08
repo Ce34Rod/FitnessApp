@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 import thelancers01.project.models.Exercise;
@@ -39,5 +40,23 @@ public class CreateExerciseController {
         return "redirect:/userExercises";
     }
 
+    @GetMapping("index")
+    public String index (){
+        return "../userExercises";
+    }
+
+    @GetMapping("view/{exerciseId}")
+    public String displayViewExercise(Model model, @PathVariable int exerciseId) {
+
+        Optional<Exercise> optExercise = exerciseRepository.findById(exerciseId);
+        if (optExercise.isPresent()) {
+            Exercise exercise = (Exercise) optExercise.get();
+            model.addAttribute("exercise", exercise);
+            return "exercise/view";
+
+        }else{
+            return "redirect:../";
+        }
+    }
 
 }

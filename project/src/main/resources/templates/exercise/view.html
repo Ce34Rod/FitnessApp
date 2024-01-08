@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<h1 th:text="${exercise.getName}">No Title</h1>
+<div>
+    <p th:text="${exercise.getTargetMuscles}"></p>
+    <p th:text="${exercise.getExerciseNotes}"></p>
+    <p th:text="${exercise.getExerciseType}"></p>
+    <p> Included in these workouts: </p>
+    <ul>
+        <li th:each="workoutb : ${exercise.workoutbs}">
+            <a th:href="@{/workouts/view' + ${workoutb.id}}" th:text="${workoutb.name}"></a>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

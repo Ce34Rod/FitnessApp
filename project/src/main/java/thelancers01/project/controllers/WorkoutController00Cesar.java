@@ -37,14 +37,17 @@ public class WorkoutController00Cesar {
         @GetMapping("create")
         public String ViewCreateAnExercise(Model model) {
 
+            model.addAttribute("exercises", exerciseRepository.findAll());
             model.addAttribute(new Workoutb());
             return "workouts/create";
         }
 
 
         @PostMapping("create")
-        public String submitForm(@ModelAttribute @Valid Workoutb newWorkout, Model model) {
+        public String submitForm(@ModelAttribute @Valid Workoutb newWorkout, Model model, @RequestParam List<Integer> exercises) {
 
+            List<Exercise> exerciseList = (List<Exercise>) exerciseRepository.findAllById(exercises);
+            newWorkout.setExercises(exerciseList);
             workoutRepository00Cesar.save(newWorkout);
 
 
@@ -57,7 +60,7 @@ public class WorkoutController00Cesar {
             Optional<Workoutb> optionalWorkout = workoutRepository00Cesar.findById(workoutId);
             if (optionalWorkout.isPresent()){
                 Workoutb workoutb = (Workoutb) optionalWorkout.get();
-                model.addAttribute("workout", workoutb);
+                model.addAttribute("workoutb", workoutb);
                 return "workouts/view";
             }else {
                 return "redirect:../";
