@@ -66,18 +66,21 @@
 
 
 <div th:if="${exercises != null}" style="text-align: center;">
-    <h2 style="color: blue; font-weight: bold;">Results:</h2>
-    <ul style="list-style: none; padding: 0;">
-        <li th:each="exercise : ${exercises}">
-            <a th:href="@{/details/{id}(id=${exercise.id})}" style="color: blue;">
-                <span th:text="${exercise.name}"></span>
-            </a>
+    <h2 style="color: black; font-weight: bold;">Results:</h2>
 
-        </li>
-    </ul>
-</div>
-<div class="create-exercise-button" style="text-align: center; margin-bottom: 280px;">
-    <a th:href="@{/create/exercise}" class="btn btn-primary">Can't find your exercise? Create one here!</a>
+    <form th:action="@{/addToWorkout}" method="post" id="addToWorkoutForm" onsubmit="addToWorkout(event)">
+        <ul style="list-style: none; padding: 0;">
+            <li th:each="exercise : ${exercises}">
+                <label>
+                    <input type="checkbox" name="selectedExercises" th:value="${exercise.id}"/>
+                    <span th:text="${exercise.name}" style="color: black;"></span>
+                </label>
+            </li>
+        </ul>
+
+        <button type="submit">Add to Workout</button>
+        <span id="notification"></span>
+    </form>
 </div>
 
 <div class="footer" th:replace="fragments :: footer"></div>

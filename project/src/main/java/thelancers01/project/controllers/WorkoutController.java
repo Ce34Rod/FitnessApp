@@ -9,6 +9,7 @@ import thelancers01.project.models.Workout;
 import thelancers01.project.models.data.WorkoutRepository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Controller
 public class WorkoutController {
@@ -16,7 +17,7 @@ public class WorkoutController {
     @Autowired
     private WorkoutRepository workoutRepository;
 
-    @GetMapping("/workouts/{workoutId}")
+    @GetMapping("/{workoutId}")
     public String showWorkout(@PathVariable Long workoutId, Model model) {
         Optional<Workout> optionalWorkout = workoutRepository.findAllById(workoutId);
 
@@ -28,5 +29,4 @@ public class WorkoutController {
             return "error";
         }
     }
-
 }
