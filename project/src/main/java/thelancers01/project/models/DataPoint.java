@@ -1,31 +1,53 @@
 package thelancers01.project.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 public class DataPoint {
 
 
+
     @Id
     @GeneratedValue
     private int id;
     private int nextId = 1;
-
-
     private String date;
-        private int value;
+    private String value;
+    @ManyToOne
+    @JoinColumn(name = "record_id")
+    private Record record;
 
-        public DataPoint(String date, int value) {
+    public Record getRecords() {
+        return record;
+    }
+
+    public void setRecord(Record record) {
+        this.record = record;
+    }
+
+    public DataPoint(String date, String value, Record record) {
+        this.date = date;
+        this.value = value;
+        this.record = record;
+        this.id = nextId;
+        nextId++;
+    }
+
+    public DataPoint(String date, String value) {
             this.date = date;
             this.value = value;
             this.id = nextId;
             nextId++;
         }
+        public DataPoint(Record record){
+        this.record = record;
+        }
 
+        public DataPoint(){}
     public int getId() {
         return id;
     }
@@ -42,11 +64,11 @@ public class DataPoint {
             this.date = date;
         }
 
-        public int getValue() {
+        public String getValue() {
             return value;
         }
 
-        public void setValue(int value) {
+        public void setValue(String value) {
             this.value = value;
         }
 
