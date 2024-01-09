@@ -20,7 +20,7 @@
     <div style="width: 45%;">
         <h2>Create A New Workout</h2>
 
-        <form action="/workouts/index" method="post">
+        <form action="/workouts/create" method="post">
             <label th:for="name">Name</label>
             <input type="text" id="name" name="name" required><br>
 
@@ -47,7 +47,7 @@
 
         <form th:action="@{/search}" method="get" style="text-align: center;">
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" th:value="${name}" /><br>
+            <input type="text"  name="name" th:value="${name}" /><br>
 
             <label for="type">Type:</label>
             <select id="type" name="type" th:value="${type}">
@@ -95,12 +95,17 @@
 
         <div th:if="${apiExercises != null}" style="text-align: center;">
             <h2 style="color: black; font-weight: bold;">Results:</h2>
+            <form action="/search" method="post">
                 <ul style="list-style: none; padding: 0;">
                     <li th:each="apiExercise : ${apiExercises}">
                         <label>
                             <input type="checkbox" name="selectedExercises" th:value="${apiExercise.id}"/>
                             <span th:text="${apiExercise.name}" style="color: black;"></span>
                         </label>
+<!--                        <th:block th:each="exercise : ${exercises}">-->
+<!--                            <input type="checkbox" name="exercises" th:value="${exercise.id}">-->
+<!--                            <label th:text="${exercise.name}"></label>-->
+<!--                        </th:block>-->
                     </li>
                 </ul>
             </form>

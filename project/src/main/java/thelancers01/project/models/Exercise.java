@@ -9,12 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 @Entity
-public class Exercise {
+public class Exercise extends AbstractEntity {
 
 
-    @Id
-    @GeneratedValue
-    private int id;
     public static String name;
     private static int nextId = 1;
     private String exerciseName;
@@ -32,14 +29,11 @@ public class Exercise {
         this.targetMuscles = targetMuscles;
         this.exerciseNotes = exerciseNotes;
         this.workoutbs = workoutbs;
-        this.id = nextId;
         nextId++;
     }
 
     public Exercise (){};
-    public int getId() {
-        return id;
-    }
+
 
 
     public String getName() {
@@ -74,16 +68,4 @@ public class Exercise {
         this.exerciseNotes = exerciseNotes;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Exercise exercise = (Exercise) o;
-        return id == exercise.id;
-    }
 }

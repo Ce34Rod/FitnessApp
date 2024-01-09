@@ -18,7 +18,7 @@ public class WorkoutService {
         this.apiRepository = apiRepository;
     }
 
-    public void addExerciseToWorkout(Long exerciseId) {
+    public void addExerciseToWorkout(Integer exerciseId) {
         Optional<ApiExercise> exerciseOptional = apiRepository.findById(exerciseId);
         if (exerciseOptional.isPresent()) {
             Workout workout = new Workout();
