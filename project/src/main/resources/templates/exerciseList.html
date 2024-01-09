@@ -68,16 +68,16 @@
 <div th:if="${apiExercises != null}" style="text-align: center;">
     <h2 style="color: black; font-weight: bold;">Results:</h2>
 
-    <form th:action="@{/addToWorkout}" method="post" id="addToWorkoutForm" onsubmit="addToWorkout(event)">
+    <form th:action="@{/addToWorkout}" method="post" id="addToWorkoutForm">
         <ul style="list-style: none; padding: 0;">
             <li th:each="apiExercise : ${apiExercises}">
                 <label>
-                    <input type="checkbox" name="selectedExercises" th:value="${apiExercise.id}"/>
+                    <input type="checkbox" name="selectedExercises" th:value="${apiExercise.name}"/>
                     <span th:text="${apiExercise.name}" style="color: black;"></span>
                 </label>
             </li>
         </ul>
-
+        <input type="hidden" th:each="apiExercise : ${apiExercises}" name="selectedExerciseNames" th:value="${apiExercise.name}" />
         <button type="submit">Add to Workout</button>
         <span id="notification"></span>
     </form>

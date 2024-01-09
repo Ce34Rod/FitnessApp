@@ -9,7 +9,7 @@ import java.util.List;
 public class Workout extends AbstractEntity{
     private String name;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "workout_exercises",
             joinColumns = @JoinColumn(name = "workout_id"),
