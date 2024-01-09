@@ -72,7 +72,7 @@
         <ul style="list-style: none; padding: 0;">
             <li th:each="apiExercise : ${apiExercises}">
                 <label>
-                    <input type="checkbox" name="selectedExercises" th:value="${apiExercise.name}"/>
+                    <input type="checkbox" name="selectedExerciseNames" th:value="${apiExercise.name}"/>
                     <span th:text="${apiExercise.name}" style="color: black;"></span>
                 </label>
             </li>

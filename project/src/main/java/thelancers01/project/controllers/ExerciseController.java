@@ -9,20 +9,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import thelancers01.project.models.ApiExercise;
+import thelancers01.project.models.data.ApiRepository;
 import thelancers01.project.service.WorkoutService;
 
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ExerciseController {
+
+    @Autowired
+    private ApiRepository apiRepository;
 
     @Autowired
     private WorkoutService workoutService;
@@ -81,15 +87,27 @@ public class ExerciseController {
     }
 
     @PostMapping("/addToWorkout")
-    public String addToWorkout(@RequestParam List<String> selectedExerciseNames, @RequestParam Long workoutId, Model model) {
-        try {
-            workoutService.addExercisesToWorkout(selectedExerciseNames, workoutId);
-            model.addAttribute("message", "Exercises added to workout successfully");
-            return "redirect:/show";
-        } catch (IllegalArgumentException e) {
-            model.addAttribute("error", e.getMessage());
-            return "error";
-        }
+    public String addToWorkout(
+            @RequestParam("selectedExerciseNames") List<String> selectedExerciseNames,
+            Model model
+    ) {
+        System.out.println("Selected Exercise Names: " + selectedExerciseNames);
+        List<ApiExercise> selectedExercises = apiRepository.findByNameIn(selectedExerciseNames);
+        System.out.println("Selected Exercises: " + selectedExercises);
+        model.addAttribute("selectedExercises", selectedExercises);
+        return "addToWorkout"; // Return the new template
     }
+
+//    @PostMapping("/addToWorkout")
+//    public String addToWorkout(@RequestParam List<String> selectedExerciseNames, @RequestParam Long workoutId, Model model) {
+//        try {
+//            workoutService.addExercisesToWorkout(selectedExerciseNames, workoutId);
+//            model.addAttribute("message", "Exercises added to workout successfully");
+//            return "addToWorkout";
+//        } catch (IllegalArgumentException e) {
+//            model.addAttribute("error", e.getMessage());
+//            return "error";
+//        }
+//    }
 
 }
