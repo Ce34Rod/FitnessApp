@@ -1,6 +1,8 @@
 package thelancers01.project.models;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToMany;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,7 @@ public class ApiExercise extends AbstractEntity{
     private String muscle;
     private String difficulty;
 
-    @ManyToMany(mappedBy = "exercises")
+    @ManyToMany(mappedBy = "exercises", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Workout> workouts = new ArrayList<>();
 
 

@@ -4,6 +4,11 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import thelancers01.project.models.ApiExercise;
 
-@Repository
-public interface ApiRepository extends CrudRepository<ApiExercise, Integer> {
+
+import java.util.List;
+
+public interface ApiRepository extends CrudRepository<ApiExercise, Long> {
+
+    List<ApiExercise> findByNameIn(List<String> names);
+
 }
