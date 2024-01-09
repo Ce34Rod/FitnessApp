@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8">
+    <title>Your Progress</title>
+</head>
+<body>
+
+
+<div>
+    <p th:unless="${records} and ${records.size()}">You have no saved progress.</p>
+    <div>
+        <h2>Tracked Variables</h2>
+        <ul>
+            <li th:each="record : ${records}">
+                <a th:href="@{'/records/view/' + ${record.id}}" th:text="${record.name}"></a>
+            </li>
+        </ul>
+        <a th:href="@{'/records/create'}">Add Tracking Point</a>
+    </div>
+</div>
+</body>
+</html>
