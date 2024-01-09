@@ -65,29 +65,27 @@
 </form>
 
 
-<div th:if="${exercises != null}" style="text-align: center;">
-    <h2 style="color: blue; font-weight: bold;">Results:</h2>
-    <ul style="list-style: none; padding: 0;">
-        <li th:each="exercise : ${exercises}">
-            <a th:href="@{/details/{id}(id=${exercise.id})}" style="color: blue;">
-                <span th:text="${exercise.name}"></span>
-            </a>
+<div th:if="${apiExercises != null}" style="text-align: center;">
+    <h2 style="color: black; font-weight: bold;">Results:</h2>
 
-        </li>
-    </ul>
+    <form th:action="@{/addToWorkout}" method="post" id="addToWorkoutForm">
+        <ul style="list-style: none; padding: 0;">
+            <li th:each="apiExercise : ${apiExercises}">
+                <label>
+                    <input type="checkbox" name="selectedExerciseNames" th:value="${apiExercise.name}"/>
+                    <span th:text="${apiExercise.name}" style="color: black;"></span>
+                </label>
+            </li>
+        </ul>
+        <input type="hidden" th:each="apiExercise : ${apiExercises}" name="selectedExerciseNames" th:value="${apiExercise.name}" />
+        <button type="submit">Add to Workout</button>
+        <span id="notification"></span>
+    </form>
 </div>
 <div class="create-exercise-button" style="text-align: center; margin-bottom: 280px;">
     <a th:href="@{/exercise/create}" class="btn btn-primary">Can't find your exercise? Create one here!</a>
 </div>
-
 <div class="footer" th:replace="fragments :: footer"></div>
-
-<!-- Add a script to handle adding exercises to the workout -->
-<script th:inline="javascript">
-    function addToWorkout(exerciseId) {
-        alert('Exercise added to workout: ' + exerciseId);
-    }
-</script>
 
 </body>
 </html>
