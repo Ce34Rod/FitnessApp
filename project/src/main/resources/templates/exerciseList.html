@@ -65,15 +65,15 @@
 </form>
 
 
-<div th:if="${exercises != null}" style="text-align: center;">
+<div th:if="${apiExercises != null}" style="text-align: center;">
     <h2 style="color: black; font-weight: bold;">Results:</h2>
 
     <form th:action="@{/addToWorkout}" method="post" id="addToWorkoutForm" onsubmit="addToWorkout(event)">
         <ul style="list-style: none; padding: 0;">
-            <li th:each="exercise : ${exercises}">
+            <li th:each="apiExercise : ${apiExercises}">
                 <label>
-                    <input type="checkbox" name="selectedExercises" th:value="${exercise.id}"/>
-                    <span th:text="${exercise.name}" style="color: black;"></span>
+                    <input type="checkbox" name="selectedExercises" th:value="${apiExercise.id}"/>
+                    <span th:text="${apiExercise.name}" style="color: black;"></span>
                 </label>
             </li>
         </ul>
@@ -82,15 +82,10 @@
         <span id="notification"></span>
     </form>
 </div>
-
+<div class="create-exercise-button" style="text-align: center; margin-bottom: 280px;">
+    <a th:href="@{/exercise/create}" class="btn btn-primary">Can't find your exercise? Create one here!</a>
+</div>
 <div class="footer" th:replace="fragments :: footer"></div>
-
-<!-- Add a script to handle adding exercises to the workout -->
-<script th:inline="javascript">
-    function addToWorkout(exerciseId) {
-        alert('Exercise added to workout: ' + exerciseId);
-    }
-</script>
 
 </body>
 </html>
