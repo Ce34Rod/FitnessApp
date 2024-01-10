@@ -77,9 +77,7 @@
                 </label>
             </li>
         </ul>
-        <input type="hidden" th:each="apiExercise : ${apiExercises}" name="selectedExerciseNames" th:value="${apiExercise.name}" />
         <button type="submit">Add to Workout</button>
-        <span id="notification"></span>
     </form>
 </div>
 <div class="create-exercise-button" style="text-align: center; margin-bottom: 280px;">

@@ -17,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import thelancers01.project.models.ApiExercise;
 import thelancers01.project.models.data.ApiRepository;
+import thelancers01.project.service.ExerciseService;
 import thelancers01.project.service.WorkoutService;
 
 
@@ -33,11 +34,20 @@ public class ExerciseController {
     @Autowired
     private WorkoutService workoutService;
 
+    @Autowired
+    private ExerciseService exerciseService;
+
     @Value("${rapidapi.key}")
     private String rapidApiKey;
 
     @Value("${rapidapi.host}")
     private String rapidApiHost;
+
+    @GetMapping("/fetchAndSaveExercises")
+    public String fetchAndSaveExercises() {
+        exerciseService.fetchAndSaveAllExercises();
+        return "redirect:/search";
+    }
 
     @GetMapping("/search")
     public String getExercises(
@@ -91,9 +101,7 @@ public class ExerciseController {
             @RequestParam("selectedExerciseNames") List<String> selectedExerciseNames,
             Model model
     ) {
-        System.out.println("Selected Exercise Names: " + selectedExerciseNames);
         List<ApiExercise> selectedExercises = apiRepository.findByNameIn(selectedExerciseNames);
-        System.out.println("Selected Exercises: " + selectedExercises);
         model.addAttribute("selectedExercises", selectedExercises);
         return "addToWorkout"; // Return the new template
     }
