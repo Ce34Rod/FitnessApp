@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Chart Page</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div>
+    <canvas id="myChart" width="400" height="200"></canvas>
+</div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    // Retrieve data points from Thymeleaf model
+    var dataPoints = /*[[${record.dataPoints}]]*/ [];
+
+    // Extract x-axis labels and y-axis values
+    var labels = dataPoints.map(function (point) {
+        return point.date;
+    });
+    var values = dataPoints.map(function (point) {
+        return point.value;
+    });
+
+    // Get the canvas element
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    // Create a line chart using Chart.js
+    var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: [[${record.name}]],
+            data: values,
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 5
+        }]
+    },
+    options:{
+        plugins: {
+            legend: {
+                labels: {
+                    font: {
+                        size: 32
+                          }
+                        }
+                    }
+                 }
+            },
+        scales: {
+            x: [{
+                type: 'category',
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Months'
+                }
+            }],
+            y: [{
+                type: 'linear',
+                display: true,
+                position: 'left',
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Values'
+                }
+            }]
+        }
+});
+
+    /*]]>*/
+</script>
+
+<p th:text="${'Description: ' + record.name}"></p>
+<p th:text="${'Details:  ' + record.getDataPointsList().get(0).getValue()}"></p>
+
+
+
+</body>
+</html>
