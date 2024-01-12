@@ -5,22 +5,20 @@
     <title>Create New Exercise - Lancer's Fitness</title>
 </head>
 <body>
-<div class="top-bar">
-    <h1>Lancer's Fitness</h1>
-    <div class="account-actions">
-        <a th:href="@{/userExercises}" class="btn btn-info">User Exercises</a>
-        <a th:href="@{/dashboard}" class="btn btn-info">Dashboard</a>
-        <a th:href="@{/account}" class="btn btn-info">Manage Account</a>
-        <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
-    </div>
+<div th:replace="~{fragments :: top-bar}" class="top-bar">
+</div>
+<div th:replace="~{fragments :: mini-guide}"></div>
+<div>
+    <img src="/images/Ad.jpeg" alt="Advertisement Image" class="ad">
 </div>
 
 <div class="create-exercise-container">
-    <h2 class="center-text">Create New Metric</h2>
+    <h2 class="BigNBold">Create New Metric</h2>
+
 
     <div class="form-container">
-        <form action="/records/create" method="post" class="centered-form">
-            <label th:for="recordName">Name</label>
+        <form action="/records/create" method="post">
+            <label th:for="recordName" class="create">Name</label>
             <input type="text" th:field="${record.name}" required><br>
 
 <!--            <label th:for="initialDataPoint">Initial Data Point</label>-->
@@ -33,5 +31,6 @@
         </form>
     </div>
 </div>
+<div  class="footer" th:replace="fragments :: footer"></div>
 </body>
 </html>
