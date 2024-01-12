@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head}">
+    <!-- Add any specific styles or scripts for the view -->
+</head>
+<body>
+<h1 style="text-align: center;">View Workout</h1>
+
+<div style="text-align: center;">
+    <h2 style="color: black; font-weight: bold;">Selected Exercises:</h2>
+    <ul style="list-style: none; padding: 0;">
+        <li th:each="selectedExercise : ${workout.exercises}">
+            <span th:text="${selectedExercise.name}" style="color: black;"></span>
+        </li>
+    </ul>
+</div>
+
+<!-- Add any additional content or links as needed -->
+
+<div class="footer" th:replace="fragments :: footer"></div>
+</body>
+</html>
