@@ -41,8 +41,13 @@ public class ExerciseService {
         ResponseEntity<ApiExercise[]> responseEntity = restTemplate.exchange(
                 apiUrl, HttpMethod.GET, new HttpEntity<>(headers), ApiExercise[].class);
 
-        List<ApiExercise> exercises = Arrays.asList(responseEntity.getBody());
+        List<ApiExercise> fetchedExercises = Arrays.asList(responseEntity.getBody());
 
-        apiRepository.saveAll(exercises);
+        // Save only non-duplicate exercises
+        for (ApiExercise exercise : fetchedExercises) {
+            if (!apiRepository.existsByName(exercise.getName())) {
+                apiRepository.save(exercise);
+            }
+        }
     }
 }
