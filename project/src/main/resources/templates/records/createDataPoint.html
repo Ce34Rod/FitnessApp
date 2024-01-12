@@ -5,21 +5,18 @@
     <title>Create New Exercise - Lancer's Fitness</title>
 </head>
 <body>
-<div class="top-bar">
-    <h1>Lancer's Fitness</h1>
-    <div class="account-actions">
-        <a th:href="@{/userExercises}" class="btn btn-info">User Exercises</a>
-        <a th:href="@{/dashboard}" class="btn btn-info">Dashboard</a>
-        <a th:href="@{/account}" class="btn btn-info">Manage Account</a>
-        <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
-    </div>
+<div th:replace="~{fragments :: top-bar}" class="top-bar">
+</div>
+<div>
+    <img src="/images/Ad.jpeg" alt="Advertisement Image" class="ad">
 </div>
 
-<div class="create-exercise-container">
-    <h2 class="center-text">Create New Data Point</h2>
+<div th:replace="~{fragments :: mini-guide}"></div>
 
+<div class="create-exercise-container">
+    <h2 class="create">Create New Data Point</h2>
     <div class="form-container">
-        <form action="/records/createDataPoint" method="post" class="centered-form">
+        <form action="/records/createDataPoint" method="post">
 
             <label for="date">Date</label>
             <input type="text" id="date" name="date" th:field="${dataPoint.date}" required><br>
@@ -40,5 +37,6 @@
         </form>
     </div>
 </div>
+<div  class="footer" th:replace="fragments :: footer"></div>
 </body>
 </html>
