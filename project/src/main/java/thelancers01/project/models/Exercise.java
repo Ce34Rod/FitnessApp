@@ -9,8 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 @Entity
-public class Exercise extends AbstractEntity {
+public class Exercise{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     public static String name;
     private static int nextId = 1;
@@ -29,12 +32,19 @@ public class Exercise extends AbstractEntity {
         this.targetMuscles = targetMuscles;
         this.exerciseNotes = exerciseNotes;
         this.workoutbs = workoutbs;
+        this.id = nextId;
         nextId++;
     }
 
     public Exercise (){};
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return exerciseName;

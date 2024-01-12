@@ -2,7 +2,8 @@
 //
 //import org.springframework.data.repository.CrudRepository;
 //import org.springframework.stereotype.Repository;
-//import thelancers01.project.models.Record;
+//import thelancers01.project.models.DataPoint;
+//
 //@Repository
-//public interface RecordRepository extends CrudRepository<Record, Integer> {
+//public interface RecordsRepository extends CrudRepository<DataPoint, Integer> {
 //}
