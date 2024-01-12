@@ -86,6 +86,7 @@ public class ExerciseController {
             } else {
                 model.addAttribute("apiExercises", exercises);
             }
+            apiRepository.saveAll(exercises);
             System.out.println("API EXERCISE: " + exercises);
             return "exerciseList";
         } catch (HttpClientErrorException e) {
