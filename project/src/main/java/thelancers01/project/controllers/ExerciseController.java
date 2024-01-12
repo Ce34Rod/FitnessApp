@@ -21,8 +21,7 @@ import thelancers01.project.service.ExerciseService;
 import thelancers01.project.service.WorkoutService;
 
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -79,13 +78,15 @@ public class ExerciseController {
                     url, HttpMethod.GET, new HttpEntity<>(headers), ApiExercise[].class);
 
             List<ApiExercise> exercises = Arrays.asList(responseEntity.getBody());
+            System.out.println("API Response: " + Arrays.toString(responseEntity.getBody()));
+
 
             if (name == null && type == null && muscle == null && difficulty == null) {
                 model.addAttribute("apiExercises", null);
             } else {
                 model.addAttribute("apiExercises", exercises);
             }
-
+            System.out.println("API EXERCISE: " + exercises);
             return "exerciseList";
         } catch (HttpClientErrorException e) {
             System.err.println("Error response from API: " + e.getRawStatusCode() + " " + e.getResponseBodyAsString());
@@ -97,25 +98,25 @@ public class ExerciseController {
     }
 
     @PostMapping("/addToWorkout")
-    public String addToWorkout(
-            @RequestParam("selectedExerciseNames") List<String> selectedExerciseNames,
-            Model model
-    ) {
-        List<ApiExercise> selectedExercises = apiRepository.findByNameIn(selectedExerciseNames);
-        model.addAttribute("selectedExercises", selectedExercises);
-        return "addToWorkout"; // Return the new template
+    public String addToWorkout(@RequestParam(value = "selectedExerciseNames", required = false) List<String> selectedExerciseNames, Model model) {
+        if (selectedExerciseNames != null && !selectedExerciseNames.isEmpty()) {
+            Set<String> uniqueExerciseNames = new HashSet<>(selectedExerciseNames);
+
+            // Fetch exercises from the repository based on the selected names
+            List<ApiExercise> selectedExercises = apiRepository.findByNameIn(new ArrayList<>(uniqueExerciseNames));
+
+
+            // Save the exercises to the api_exercise table
+                apiRepository.saveAll(selectedExercises);
+
+
+            model.addAttribute("selectedExercises", selectedExercises);
+        } else {
+            model.addAttribute("selectedExercises", null);
+        }
+        return "addToWorkout";
     }
 
-//    @PostMapping("/addToWorkout")
-//    public String addToWorkout(@RequestParam List<String> selectedExerciseNames, @RequestParam Long workoutId, Model model) {
-//        try {
-//            workoutService.addExercisesToWorkout(selectedExerciseNames, workoutId);
-//            model.addAttribute("message", "Exercises added to workout successfully");
-//            return "addToWorkout";
-//        } catch (IllegalArgumentException e) {
-//            model.addAttribute("error", e.getMessage());
-//            return "error";
-//        }
-//    }
+
 
 }
