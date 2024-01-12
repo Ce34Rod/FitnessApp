@@ -41,7 +41,6 @@ public class WorkoutService {
             workoutRepository.save(workout);
         } else {
             throw new IllegalArgumentException("Workout not found with ID: " + workoutId);
-
         }
     }
 }

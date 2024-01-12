@@ -54,4 +54,17 @@ public class ApiExercise extends AbstractEntity{
     }
 
     public List<Workout> getWorkouts() { return workouts; }
+
+    @Override
+    public String toString() {
+        return "ApiExercise{" +
+                "id=" + getId() +
+                ", name='" + (name != null ? name : "N/A") + '\'' +
+                ", type='" + (type != null ? type : "N/A") + '\'' +
+                ", muscle='" + (muscle != null ? muscle : "N/A") + '\'' +
+                ", difficulty='" + (difficulty != null ? difficulty : "N/A") + '\'' +
+                ", workouts=" + (workouts != null ? workouts : "N/A") +
+                '}';
+    }
+
 }
