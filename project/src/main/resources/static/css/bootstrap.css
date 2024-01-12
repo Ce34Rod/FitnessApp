@@ -261,9 +261,10 @@ label {
 }
 
 .create-exercise-container{
-    margin-right: 400px;
-    margin-top: -200px;
+    margin-top: 30px;
+
 }
+
 .create-exercise-button{
     margin-bottom: 190px;
     text-align: center;
@@ -343,11 +344,10 @@ th {
             display: flex;
             flex-direction: column;
             align-items: left;
-            padding-top: 10px;
+            padding-top: 20px;
             position:absolute;
             left:10px;
             top:80px;
-            margin-top: 100px;
         }
 
         .mini-guide-entry {
@@ -425,8 +425,6 @@ h2.BigNBold {
 font-size: 40px;
 font-weight: bold;
 text-align: center;
-padding-top: 40px;
-padding-bottom: 40px;
 }
 
 .exercise-entry {
@@ -443,12 +441,3 @@ text-weight: bold;
 .exercise-entry:hover {
  text-decoration: none;
         }
-label.create {
-text-align: left;
-
-}
-
-.create-container{
-margin: -340px 500px 90px 0px;
-
-}
