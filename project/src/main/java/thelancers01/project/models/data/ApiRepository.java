@@ -15,8 +15,7 @@ public interface ApiRepository extends CrudRepository<ApiExercise, Long> {
     @Query("SELECT DISTINCT a.name FROM ApiExercise a")
     List<String> findAllNames();
 
-    @Query("SELECT CASE WHEN COUNT(a) > 0 THEN true Else false END FROM ApiExercise a WHERE a.name = :name")
-    boolean existsByName(@Param("name") String name);
+    boolean existsByName(String name);
 
     @Transactional
     @Modifying
