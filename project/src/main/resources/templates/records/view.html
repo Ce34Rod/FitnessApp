@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
-    <meta charset="UTF-8"/>
-    <title></title>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Chart Page</title>
+    <!-- Include necessary dependencies for your chart library (e.g., Chart.js) -->
+    <!-- Here, we assume the use of Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-<h1 th:text="${record.name}">No Title</h1>
 
+<!-- Render the chart using Thymeleaf -->
 <div>
+
     <table>
         <thead>
         <tr>
@@ -24,11 +27,72 @@
         </tr>
         </tbody>
     </table>
+
 </div>
 
+<script th:inline="javascript">
+    /*<![CDATA[*/
 
-<a th:href="@{'/records/createDataPoint/' + ${record.id}}">Add Data Point</a>
-<a th:href="@{'/records/index'}">Back to All Metrics</a>
+    // Retrieve data points from Thymeleaf model
+    var dataPoints = /*[[${dataPoints}]]*/ [];
+
+    // Extract x-axis labels and y-axis values
+    var labels = dataPoints.map(function (point) {
+        return point.date;
+    });
+    var values = dataPoints.map(function (point) {
+        return point.value;
+    });
+
+    // Get the canvas element
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    // Create a line chart using Chart.js
+    var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Bicep Curl Max',
+            data: values,
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 5
+        }]
+    },
+    options:{
+        plugins: {
+            legend: {
+                labels: {
+                    font: {
+                        size: 32
+                          }
+                        }
+                    }
+                 }
+            },
+        scales: {
+            x: [{
+                type: 'category',
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Months'
+                }
+            }],
+            y: [{
+                type: 'linear',
+                display: true,
+                position: 'left',
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Values'
+                }
+            }]
+        }
+});
+
+    /*]]>*/
+</script>
 
 </body>
 </html>
