@@ -6,35 +6,37 @@
 </head>
 <body>
 
-<div class="top-bar">
-    <h1>Lancer's Fitness</h1>
-    <div class="account-actions">
-        <a th:href="@{/userExercises}" class="btn btn-info">User Exercises</a>
-        <a th:href="@{/dashboard}" class="btn btn-info">Dashboard</a>
-        <a th:href="@{/account}" class="btn btn-info">Manage Account</a>
-        <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
-    </div>
+<div th:replace="~{fragments :: top-bar}" class="top-bar">
+</div>
+<div th:replace="~{fragments :: mini-guide}"></div>
+<h2 class="create">Create A New Workout</h2>
+<div>
+    <img src="/images/Ad.jpeg" alt="Advertisement Image" class="ad">
 </div>
 
-<div style="display: flex; justify-content: space-between; align-items: flex-start; padding: 20px;">
-    <div style="width: 45%;">
-        <h2>Create A New Workout</h2>
+<div>
+    <div class="exercises">
 
-        <form action="/workouts/index" method="post">
-            <label th:for="name">Name</label>
+
+
+        <form class="createWorkout" action="/workouts/create" method="post">
+            <label class="BigNBold" th:for="name">Name: </label>
+
             <input type="text" id="name" name="name" required><br>
 
-            <label th:for="workoutDescription">Workout Description:</label>
+            <label class="BigNBold" th:for="workoutDescription">Workout Description: </label>
             <input type="text" id="workoutDescription" name="workoutDescription" required><br>
 
-            <label th:for="workoutDetails">Workout Details</label>
+            <label class="BigNBold" th:for="workoutDetails">Workout Details: </label>
             <textarea id="workoutDetails" name="workoutDetails" required></textarea><br>
 
-            <div>
-                <label th:for="exercises">Exercises: </label>
+            <div class="exercises">
+                <label class="BigNBold" th:for="exercises">Exercises: </label>
                 <th:block th:each="exercise : ${exercises}">
-                    <input type="checkbox" name="exercises" th:value="${exercise.id}">
-                    <label th:text="${exercise.name}"></label>
+                    <label class="BigNBold">
+                        <input  type="checkbox" name="exercises" th:value="${exercise.id}" th:text="${' ' + exercise.name + '  '}">
+                    </label>
+
                 </th:block>
             </div>
 

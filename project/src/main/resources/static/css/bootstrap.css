@@ -8,6 +8,20 @@ body {
     min-height: 100vh;
     margin: 0;
     padding: 0;
+    align-items: center;
+}
+
+ul.no-bullets{
+list-style-type: none;
+list-style-position: inside;
+margin: 90px 500px 54px 12px;
+}
+
+li.BigNBold{
+font-size: 30px;
+font-weight: bold;
+text-decoration; underline;
+color: black;
 }
 
 .content-wrap{
@@ -29,6 +43,7 @@ body {
     align-items: center;
     padding: 10px;
     background-color: #c06000 ;
+    width: 100%;
 }
 .top-bar h1 {
     font-family:  Impact,Haettenschweiler,Franklin Gothic Bold,Charcoal,Helvetica Inserat,Bitstream Vera Sans Bold,Arial Black,sans serif;
@@ -301,3 +316,130 @@ label {
     top: 50%;
     transform: translateY(-50%) scale(1.5);
     }
+
+
+ table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+th {
+        background-color: #f2f2f2;
+    }
+
+ h1 {
+       text-align: center;
+ }
+
+
+.mini-guide {
+            width: 120px;
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            padding-top: 20px;
+            position:absolute;
+            left:10px;
+            top:80px;
+        }
+
+        .mini-guide-entry {
+            text-decoration: none;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .mini-guide-entry:hover {
+            background-color: #555;
+        }
+.container {
+text-align: center;
+}
+
+.exercise-actions {
+margin-top: 20px;
+}
+
+p.inline {
+display: inline;
+padding: 0;
+margin-top: 0;
+margin-bottom: 0;
+}
+
+.main-content {
+            margin-right: 100px;
+        }
+
+h2.create {
+margin: 90px 20px 27px 0px;
+}
+
+div.exercises {
+margin: 27px 0px 90px 0px;
+}
+
+label.BigNBold {
+font-size: 25px;
+font-weight: bold;
+}
+
+input.bigger {
+font-size: 25px;
+font-weight: bold;
+}
+
+form.createWorkout {
+margin: -340px 500px 90px 0px;
+}
+
+img.ad {
+margin: 100px 0px 0px 500px;
+}
+
+.workout-entry {
+ text-decoration: none;
+ color: #fff;
+ text-align: center;
+ padding: 10px;
+ margin-bottom: 10px;
+ transition: background-color 0.3s ease;
+        }
+
+.workout-entry:hover {
+ background-color: black;
+ text-decoration: none;
+        }
+
+h2.BigNBold {
+font-size: 40px;
+font-weight: bold;
+text-align: center;
+}
+
+.exercise-entry {
+text-size: 40px;
+text-weight: bold;
+ text-decoration: none;
+ color: #fff;
+ text-align: center;
+ padding: 10px;
+ margin-bottom: 10px;
+ transition: background-color 0.3s ease;
+        }
+
+.exercise-entry:hover {
+ text-decoration: none;
+        }
+
