@@ -17,7 +17,6 @@
         </tr>
         </thead>
         <tbody>
-        <!-- Iterate over the data points and create a row for each -->
         <tr th:each="dataPoint : ${record.getDataPointsList()}">
             <td th:text="${dataPoint.id}"></td>
             <td th:text="${dataPoint.date}"></td>

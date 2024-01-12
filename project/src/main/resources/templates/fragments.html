@@ -21,6 +21,22 @@
         </nav>
     </header>
 </div>
+<div th:fragment="top-bar" class="top-bar">
+    <h1>Lancer's Fitness</h1>
+    <div class="account-actions">
+        <a th:href="@{/userExercises}" class="btn btn-info">User Exercises</a>
+        <a th:href="@{/dashboard}" class="btn btn-info">Dashboard</a>
+        <a th:href="@{/account}" class="btn btn-info">Manage Account</a>
+        <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+    </div>
+</div>
+
+<div th:fragment="mini-guide" class="mini-guide">
+    <a class="mini-guide-entry" th:href="@{/dashboard}" title="Home">Dashboard</a>
+    <a th:href="@{/records/index}" class="mini-guide-entry">Records</a>
+    <a class="mini-guide-entry" th:href="@{/workouts/index}" >Workouts</a>
+    <a class="mini-guide-entry" th:href="@{/search}" >Exercise Search</a>
+</div>
 <div th:fragment="footer">
     <footer class="footer">
         Ⓒ Lancers Fitness 2023
