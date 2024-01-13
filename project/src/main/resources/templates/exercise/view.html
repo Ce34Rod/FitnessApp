@@ -18,7 +18,7 @@
     <p> Included in these workouts: </p>
     <ul>
         <li th:each="workoutb : ${exercise.workoutbs}">
-            <a th:href="@{'/workouts/view' + ${workoutb.id}}" th:text="${workoutb.name}"></a>
+            <a th:href="@{'/workouts/view/' + ${workoutb.id}}" th:text="${workoutb.name}"></a>
         </li>
     </ul>
 </div>

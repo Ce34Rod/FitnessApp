@@ -14,10 +14,17 @@ public abstract class AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    private static int nextId;
     public int getId() {return id;}
 
-    private static int nextId = 1;
+    public void setId(int id) {
+        this.id = id;
+    }
+    public AbstractEntity(){
+        this.id = nextId;
+        nextId++;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -28,6 +35,7 @@ public abstract class AbstractEntity {
 
     @Override
     public int hashCode() {return Objects.hash(id);}
+
 
 
 }
