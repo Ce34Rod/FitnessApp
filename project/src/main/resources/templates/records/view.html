@@ -10,7 +10,24 @@
 
 <!-- Render the chart using Thymeleaf -->
 <div>
-    <canvas id="myChart" width="400" height="200"></canvas>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Data Point Id</th>
+            <th>Value</th>
+            <th>Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="dataPoint : ${record.getDataPointsList()}">
+            <td th:text="${dataPoint.id}"></td>
+            <td th:text="${dataPoint.date}"></td>
+            <td th:text="${dataPoint.value}"></td>
+        </tr>
+        </tbody>
+    </table>
+
 </div>
 
 <script th:inline="javascript">

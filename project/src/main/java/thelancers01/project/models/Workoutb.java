@@ -27,7 +27,10 @@ public class Workoutb {
 
     @ManyToMany
     private List<Exercise> exercises = new ArrayList<>();
+
+
     public List<Exercise> getExercises(){return exercises;}
+
     public void setExercises(List<Exercise> exercises) {this.exercises = exercises;}
 
     public Workoutb(int id, String name, String workoutDetails, String workoutDescription, List<Exercise> exerciseList) {

@@ -3,20 +3,44 @@
 <head th:replace="fragments :: head">
     <meta charset="UTF-8">
     <title>Your Workouts</title>
+
 </head>
-<body class="container  body-content">
-<h1 th:text="${workoutb.name}">No Title</h1>
+<body class="container body-content">
+<div th:replace="~{fragments :: top-bar}" class="top-bar">
+</div>
+
+<div th:replace="~{fragments :: mini-guide}" class="mini-guide">
+</div>
+
+<div class="main-content">
+    <h1 th:text="${workoutb.name}">No Title</h1>
 
     <div>
         <p th:text="${'Description: ' + workoutb.getWorkoutDescription}"></p>
         <p th:text="${'Details:  ' + workoutb.getWorkoutDetails}"></p>
-        <p>
-            Exercises:
-            <ul>
-        <li th:each="exercise : ${workoutb.exercises}">
-            <a th:href="@{'/exercise/view/' + ${exercise.id}}" th:text="${exercise.getName}"></a>
-        </li>
-    </ul>
+        <p class="inline" >Exercises:</p>
+<!--        <ul class="no-bullets">-->
+<!--            <li th:each="exercise : ${workoutb.exercises}">-->
+            <th:block th:each="exercise : ${workoutb.exercises}">
+                <a th:href="@{'/exercise/view/' + ${exercise.id}}" th:text="${exercise.getName}"></a>
+            </th:block>
+
+<!--
+
+</li>-->
+<!--        </ul>-->
+
+
+        <div class="exercise-actions">
+            <a th:href="@{'/workout/addExercise/' + ${workoutb.id}}"><button>Add Exercise</button></a>
+            <a th:href="@{'/workout/deleteExercise/' + ${workoutb.id}}"><button>Delete Exercise</button></a>
+            <a th:href="@{'/workout/deleteWorkout/' + ${workoutb.id}}"><button>Delete Workout</button></a>
+            <a th:href="@{'/workout/editWorkout/' + ${workoutb.id}}"><button>Edit Workout</button></a>
+        </div>
     </div>
+</div>
+
+<section class="footerSpace"></section>
+<div class="footer" th:replace="~{fragments :: footer}"></div>
 </body>
 </html>

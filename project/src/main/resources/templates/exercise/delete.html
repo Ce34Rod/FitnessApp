@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<form method="post">
+
+    <th:block th:each="exercise : ${exercises}">
+        <div>
+            <label>
+                <span th:text="${exercise.name}"></span>
+                <input type="checkbox" name="exerciseIds" th:value="${exercise.id}">
+            </label>
+        </div>
+    </th:block>
+
+    <input type="submit" value="Delete" class="btn btn-danger">
+</form>
+
+<a th:href="@{/userExercises}" class="btn btn-danger">Back to All Exercises</a>
+
+</body>
+</html>

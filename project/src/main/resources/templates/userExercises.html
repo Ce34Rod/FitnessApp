@@ -5,13 +5,10 @@
     <title>All User Exercises - Lancer's Fitness</title>
 </head>
 <body>
-<div class="top-bar">
-    <h1>Lancer's Fitness</h1>
-    <div class="account-actions">
-        <a th:href="@{/dashboard}" class="btn btn-info">Dashboard</a>
-        <a th:href="@{/account}" class="btn btn-info">Manage Account</a>
-        <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
-    </div>
+
+    <div th:replace="~{fragments :: top-bar}"></div>
+
+    <div th:replace="~{fragments :: mini-guide}"></div>
 </div>
 <p th:unless="${exercises} and ${exercises.size()}">No exercises found!</p>
 
@@ -25,7 +22,11 @@
     <div th:each="exercise : ${exercises}">
         <div class="exercise-row">
             <div class="exercise-details">
-                <a th:href="@{'/exercise/view/' + ${exercise.id}}" th:text="'Name: ' + ${exercise.getName}"></a>
+                <ul class="no-bullets">
+                    <li class="BigNBold">
+                <a th:href="@{'/exercise/view/' + ${exercise.id}}" class="exercise-entry" th:text="${exercise.getName}"></a>
+                    </li>
+                </ul>
                 <br>
 <!--                <strong>Name:</strong> <span th:href="@{'/exercise/view' + ${exercise.id}}" th:text="${exercise.getName}"></span><br>-->
                 <strong>Type:</strong> <span th:text="${exercise.getExerciseType}"></span><br>
@@ -40,6 +41,7 @@
     <section class="Exercise-Buttons">
         <button type="submit" name="action" value="add" class="btn btn-submit">Add Selected to Workout</button>
         <button type="submit" name="action" value="delete" class="btn btn-danger">Delete Selected</button>
+        <a th:href="@{/exercise/delete}" class="btn btn-danger">Delete Saved Exercises</a>
     </section>
 </form>
 
