@@ -1,98 +1,40 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <title>Chart Page</title>
-    <!-- Include necessary dependencies for your chart library (e.g., Chart.js) -->
-    <!-- Here, we assume the use of Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title></title>
 </head>
 <body>
+<div th:replace="~{fragments :: top-bar}" class="top-bar">
+</div>
+<div th:replace="~{fragments :: mini-guide}"></div>
 
-<!-- Render the chart using Thymeleaf -->
+
+<h1 th:text="${record.name}">No Title</h1>
+
 <div>
-
-    <table>
+    <table class="table">
         <thead>
         <tr>
-            <th>Data Point Id</th>
+<!--            <th>Data Point Id</th>-->
             <th>Value</th>
             <th>Date</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="dataPoint : ${record.getDataPointsList()}">
-            <td th:text="${dataPoint.id}"></td>
-            <td th:text="${dataPoint.date}"></td>
+<!--            <td th:text="${dataPoint.id}"></td>-->
             <td th:text="${dataPoint.value}"></td>
+            <td th:text="${dataPoint.date}"></td>
+
         </tr>
         </tbody>
     </table>
-
 </div>
 
-<script th:inline="javascript">
-    /*<![CDATA[*/
 
-    // Retrieve data points from Thymeleaf model
-    var dataPoints = /*[[${dataPoints}]]*/ [];
-
-    // Extract x-axis labels and y-axis values
-    var labels = dataPoints.map(function (point) {
-        return point.date;
-    });
-    var values = dataPoints.map(function (point) {
-        return point.value;
-    });
-
-    // Get the canvas element
-    var ctx = document.getElementById('myChart').getContext('2d');
-
-    // Create a line chart using Chart.js
-    var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: labels,
-        datasets: [{
-            label: 'Bicep Curl Max',
-            data: values,
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 5
-        }]
-    },
-    options:{
-        plugins: {
-            legend: {
-                labels: {
-                    font: {
-                        size: 32
-                          }
-                        }
-                    }
-                 }
-            },
-        scales: {
-            x: [{
-                type: 'category',
-                display: true,
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Months'
-                }
-            }],
-            y: [{
-                type: 'linear',
-                display: true,
-                position: 'left',
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Values'
-                }
-            }]
-        }
-});
-
-    /*]]>*/
-</script>
-
+<a th:href="@{'/records/createDataPoint/' + ${record.id}}">Add Data Point</a>
+<a th:href="@{'/records/index'}">Back to All Metrics</a>
+<div  class="footer" th:replace="fragments :: footer"></div>
 </body>
 </html>

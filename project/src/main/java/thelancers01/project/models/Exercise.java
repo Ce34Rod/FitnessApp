@@ -1,20 +1,17 @@
 package thelancers01.project.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-@Entity
-public class Exercise {
 
+@Entity
+public class Exercise{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     public static String name;
     private static int nextId = 1;
     private String exerciseName;
@@ -32,15 +29,18 @@ public class Exercise {
         this.targetMuscles = targetMuscles;
         this.exerciseNotes = exerciseNotes;
         this.workoutbs = workoutbs;
-        this.id = nextId;
         nextId++;
     }
 
     public Exercise (){};
+
     public int getId() {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return exerciseName;
@@ -74,16 +74,4 @@ public class Exercise {
         this.exerciseNotes = exerciseNotes;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Exercise exercise = (Exercise) o;
-        return id == exercise.id;
-    }
 }

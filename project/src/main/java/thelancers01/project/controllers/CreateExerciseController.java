@@ -2,20 +2,16 @@ package thelancers01.project.controllers;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import thelancers01.project.models.Exercise;
+import thelancers01.project.models.data.ExerciseRepository;
+import thelancers01.project.service.DeleteExerciseService;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-
-import thelancers01.project.models.Exercise;
-import thelancers01.project.models.data.ExerciseRepository;
-import thelancers01.project.service.DeleteExerciseService;
 
 
 @Controller
