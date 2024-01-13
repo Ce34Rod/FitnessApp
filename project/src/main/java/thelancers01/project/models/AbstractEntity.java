@@ -14,16 +14,12 @@ public abstract class AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private static int nextId;
     public int getId() {return id;}
 
     public void setId(int id) {
         this.id = id;
     }
-    public AbstractEntity(){
-        this.id = nextId;
-        nextId++;
-    }
+
 
     @Override
     public boolean equals(Object o) {

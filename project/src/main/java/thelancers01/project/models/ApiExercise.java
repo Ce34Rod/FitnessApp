@@ -66,5 +66,9 @@ public class ApiExercise extends AbstractEntity{
                 ", workouts=" + (workouts != null ? workouts : "N/A") +
                 '}';
     }
-
+    @Override
+    public void setId(int id) {
+        // You can choose to throw an exception or handle it differently
+        throw new UnsupportedOperationException("Setting ID manually is not allowed for ApiExercise entities.");
+    }
 }
