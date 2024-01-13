@@ -77,22 +77,11 @@
                 </label>
             </li>
         </ul>
+        <input type="hidden" th:each="apiExercise : ${apiExercises}" name="selectedExerciseNames" th:value="${apiExercise.name}" />
         <button type="submit">Add to Workout</button>
+        <span id="notification"></span>
     </form>
 </div>
-
-<div th:if="${selectedExercises != null && not #lists.isEmpty(selectedExercises)}" style="text-align: center;">
-    <h2 style="color: black; font-weight: bold;">Selected Exercises:</h2>
-    <ul style="list-style: none; padding: 0;">
-        <li th:each="selectedExercise : ${selectedExercises}">
-            <span th:text="${selectedExercise.name}" style="color: black;"></span>
-        </li>
-    </ul>
-</div>
-
-
-
-
 <div class="create-exercise-button" style="text-align: center; margin-bottom: 280px;">
     <a th:href="@{/exercise/create}" class="btn btn-primary">Can't find your exercise? Create one here!</a>
 </div>

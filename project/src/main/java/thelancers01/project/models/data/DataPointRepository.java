@@ -2,9 +2,9 @@ package thelancers01.project.models.data;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import thelancers01.project.models.Exercise;
+import thelancers01.project.models.DataPoint;
 
 @Repository
-public interface ExerciseRepository extends CrudRepository<Exercise, Integer> {
+public interface DataPointRepository extends CrudRepository<DataPoint, Integer> {
 
 }

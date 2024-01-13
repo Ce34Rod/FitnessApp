@@ -22,7 +22,7 @@ public abstract class AbstractExercise {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        thelancers01.project.models.AbstractExercise that = (thelancers01.project.models.AbstractExercise) o;
+        AbstractExercise that = (AbstractExercise) o;
         return id == that.id;
     }
 

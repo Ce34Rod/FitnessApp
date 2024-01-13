@@ -3,7 +3,6 @@ package thelancers01.project.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import thelancers01.project.models.ApiExercise;
-import thelancers01.project.models.Exercise;
 import thelancers01.project.models.Workout;
 import thelancers01.project.models.data.ApiRepository;
 import thelancers01.project.models.data.WorkoutRepository;
@@ -41,6 +40,7 @@ public class WorkoutService {
             workoutRepository.save(workout);
         } else {
             throw new IllegalArgumentException("Workout not found with ID: " + workoutId);
+
         }
     }
 }

@@ -9,7 +9,6 @@ import thelancers01.project.models.Workout;
 import thelancers01.project.models.data.WorkoutRepository;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Controller
 public class WorkoutController {
