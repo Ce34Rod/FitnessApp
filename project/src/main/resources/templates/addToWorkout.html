@@ -1,3 +1,5 @@
+<!-- addToWorkout.html -->
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments :: head}">
@@ -16,14 +18,44 @@
 </div>
 
 <div style="text-align: center;">
-    <h2>Selected Exercises</h2>
-    <ul>
-        <li th:if="${selectedExercises != null}" th:each="apiExercise : ${selectedExercises}">
-            <span th:text="${apiExercise.name}"></span>
-            <!-- Add more fields if needed -->
-        </li>
-        <li th:if="${selectedExercises == null}">No exercises selected</li>
-    </ul>
+    <h2>Add to Workout</h2>
+    <!-- Form for adding to workout -->
+    <form th:action="@{/addToWorkout}" method="post">
+        <!-- Input field for workout name -->
+        <label for="workoutName">Workout Name:</label>
+        <input type="text" id="workoutName" name="workoutName" required/>
+        <br/>
+
+        <!-- Table for selected exercises -->
+        <table border="1">
+            <thead>
+            <tr>
+                <th>Select</th>
+                <th>Exercise Name</th>
+                <!-- Add more columns if needed -->
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${selectedExercises != null}" th:each="apiExercise : ${selectedExercises}">
+                <td>
+                    <!-- Checkbox for selecting exercises -->
+                    <input type="checkbox" th:name="selectedExerciseNames" th:value="${apiExercise.name}" checked/>
+                </td>
+                <td th:text="${apiExercise.name}"></td>
+                <!-- Add more columns if needed -->
+            </tr>
+            <tr th:if="${selectedExercises == null}">
+                <td colspan="2">No exercises selected</td>
+                <!-- Add more columns if needed -->
+            </tr>
+            </tbody>
+        </table>
+
+        <br/>
+        <!-- Buttons for CRUD operations -->
+        <button type="submit">Save to Workout</button>
+        <button type="button" onclick="location.href='/workouts'">Cancel</button>
+    </form>
 </div>
 
 <div class="footer" th:replace="fragments :: footer"></div>

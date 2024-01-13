@@ -6,9 +6,11 @@ import thelancers01.project.models.ApiExercise;
 import thelancers01.project.models.Exercise;
 import thelancers01.project.models.Workout;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface WorkoutRepository extends CrudRepository<Workout, Long> {
 
+    List<Workout> findAll();
 }

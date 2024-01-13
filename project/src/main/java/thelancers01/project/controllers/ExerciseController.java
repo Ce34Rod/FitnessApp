@@ -15,8 +15,9 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import thelancers01.project.models.ApiExercise;
+import thelancers01.project.models.Workout;
 import thelancers01.project.models.data.ApiRepository;
-
+import thelancers01.project.models.data.WorkoutRepository;
 
 
 import java.util.*;
@@ -24,6 +25,9 @@ import java.util.*;
 
 @Controller
 public class ExerciseController {
+
+    @Autowired
+    private WorkoutRepository workoutRepository;
 
     @Autowired
     private ApiRepository apiRepository;
@@ -88,11 +92,17 @@ public class ExerciseController {
     }
 
     @PostMapping("/addToWorkout")
-    public String addToWorkout(@RequestParam(value = "selectedExerciseNames", required = false) List<String> selectedExerciseNames, Model model) {
+    public String addToWorkout(@RequestParam(value = "selectedExerciseNames", required = false) List<String> selectedExerciseNames,
+                               @RequestParam(value = "workoutName") String workoutName, Model model) {
         if (selectedExerciseNames != null && !selectedExerciseNames.isEmpty()) {
             Set<String> uniqueExerciseNames = new HashSet<>(selectedExerciseNames);
 
             List<ApiExercise> selectedExercises = apiRepository.findByNameIn(new ArrayList<>(uniqueExerciseNames));
+
+            Workout workout = new Workout();
+            workout.setWorkoutName(workoutName);
+            workout.setExercises(selectedExercises);
+            workoutRepository.save(workout);
 
             model.addAttribute("selectedExercises", selectedExercises);
         } else {

@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 public class Workout extends AbstractEntity{
-    private String name;
+
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
@@ -16,14 +16,18 @@ public class Workout extends AbstractEntity{
             inverseJoinColumns = @JoinColumn(name = "exercise_id")
     )
 
+
     private List<ApiExercise> exercises = new ArrayList<>();
 
-    public String getName() {
-        return name;
+    @Column(name = "workout_name")
+    private String workoutName;
+
+    public String getWorkoutName() {
+        return workoutName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setWorkoutName(String workoutName) {
+        this.workoutName = workoutName;
     }
 
     public List<ApiExercise> getExercises() {
