@@ -106,6 +106,28 @@ public class WorkoutController00Cesar {
         }
 
 
+        @GetMapping("delete")
+    public String deleteWorkout(Model model) {
+            model.addAttribute("title", "Delete Workouts");
+            model.addAttribute("workouts", workoutRepository00Cesar.findAll());
+            return "workouts/delete";
+        }
+
+
+        @PostMapping("delete")
+        public String postDeleteWorkout(@RequestParam(required = false) int[] workoutbIds) {
+
+            if (workoutbIds != null) {
+               for (int id : workoutbIds) {
+                   workoutRepository00Cesar.deleteById(id);
+               }
+            }
+
+            return "redirect:/workouts/index";
+        }
+
+
+
 
 
 }
