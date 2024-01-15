@@ -1,5 +1,6 @@
 package thelancers01.project.controllers;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -96,16 +97,12 @@ public class ExerciseController {
 
     @PostMapping("/addToWorkout")
     public String addToWorkout(@RequestParam(value = "selectedExerciseNames", required = false) List<String> selectedExerciseNames,
-                                Model model) {
+                               HttpSession session) {
         if (selectedExerciseNames != null && !selectedExerciseNames.isEmpty()) {
             Set<String> uniqueExerciseNames = new HashSet<>(selectedExerciseNames);
-
             List<ApiExercise> selectedExercises = apiRepository.findByNameIn(new ArrayList<>(uniqueExerciseNames));
-
-            model.addAttribute("selectedExercises", selectedExercises);
-        } else {
-            model.addAttribute("selectedExercises", null);
+            session.setAttribute("selectedExercises", selectedExercises);
         }
-        return "/workouts/create";
+        return "redirect:/workouts/create";
     }
 }
