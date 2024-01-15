@@ -1,10 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title></title>
-</head>
-<body>
+<head th:replace="~{fragments :: head}"></head>
 
+<body>
+<div th:replace="~{fragments :: top-bar}" class="top-bar">
+</div>
+<div th:replace="~{fragments :: mini-guide}"></div>
+<header></header>
+<h1 th:text="${title}">No Such Workout</h1>
+
+<form action="/workouts/addExercise" method="post">
+    <div class="form-group">
+        <input type="hidden" th:field="${workoutExercise.workoutb}">
+        <select th:field="${workoutExercise.exercise}">
+            <option th:each="exercise : ${exercises}"
+                    th:value="${exercise.id}"
+                    th:text="${exercise.name}"
+            ></option>
+        </select>
+    </div>
+    <input type="submit" class="btn btn-success" value="Add Exercise">
+</form>
+<div class="footer" th:replace="fragments :: footer"></div>
 </body>
 </html>

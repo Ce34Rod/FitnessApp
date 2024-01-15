@@ -4,11 +4,13 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import thelancers01.project.models.Exercise;
 import thelancers01.project.models.Workoutb;
 import thelancers01.project.models.data.ExerciseRepository;
 import thelancers01.project.models.data.WorkoutRepository00Cesar;
+import thelancers01.project.models.dto.WorkoutExerciseDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +68,40 @@ public class WorkoutController00Cesar {
                 return "redirect:../";
             }
         }
+
+        @GetMapping("addExercise")
+        public String displayAddExercise(@RequestParam Integer workoutbId, Model model){
+            Optional<Workoutb> result = workoutRepository00Cesar.findById(workoutbId);
+            Workoutb workoutb = result.get();
+            model.addAttribute("title", "Add Exercise to: " + workoutb.getName());
+            model.addAttribute("exercises", exerciseRepository.findAll());
+            WorkoutExerciseDTO workoutExercise = new WorkoutExerciseDTO();
+            workoutExercise.setWorkoutb(workoutb);
+            model.addAttribute("workoutExercise", workoutExercise);
+            return "workouts/addExercise";
+        }
+
+
+
+
+
+        @PostMapping("addExercise")
+    public String processAddExercise (@ModelAttribute @Valid WorkoutExerciseDTO workoutExercise,
+                                      Errors errors, Model model){
+            if(!errors.hasErrors()){
+                Workoutb workoutb = workoutExercise.getWorkoutb();
+                Exercise exercise = workoutExercise.getExercise();
+                if (!workoutb.getExercises().contains(exercise)){
+                    workoutb.addExercise(exercise);
+                    workoutRepository00Cesar.save(workoutb);
+                }
+                return "redirect:view/" + workoutb.getId();
+            }
+
+            return "redirect:addExercise";
+        }
+
+
 
 
 }

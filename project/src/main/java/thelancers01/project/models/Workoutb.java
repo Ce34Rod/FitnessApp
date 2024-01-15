@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,8 @@ public class Workoutb {
     @Id
     @GeneratedValue
     private int id;
+    @NotBlank(message = "Name is required")
+    @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
     public String name;
     private static int nextId = 1;
  //   private String workoutName;
@@ -23,15 +27,12 @@ public class Workoutb {
 //    private String targetMuscles;
     private String workoutDetails;
     private String workoutDescription;
-    //private List<Exercise> exerciseList = new ArrayList<>();
 
     @ManyToMany
     private List<Exercise> exercises = new ArrayList<>();
 
 
-    public List<Exercise> getExercises(){return exercises;}
 
-    public void setExercises(List<Exercise> exercises) {this.exercises = exercises;}
 
     public Workoutb(int id, String name, String workoutDetails, String workoutDescription, List<Exercise> exerciseList) {
         this.id = id;
@@ -39,14 +40,18 @@ public class Workoutb {
         this.workoutDetails = workoutDetails;
         this.workoutDescription = workoutDescription;
         this.exercises = exerciseList;
-        // this.workoutName = workoutName;
-//        this.workoutType = workoutType;
-//        this.targetMuscles = targetMuscles;
 
-       // this.exerciseList = exerciseList;
     }
 
     public Workoutb(){};
+
+
+    public List<Exercise> getExercises(){return exercises;}
+
+    public void setExercises(List<Exercise> exercises) {this.exercises = exercises;}
+
+    public void addExercise(Exercise exercise){this.exercises.add(exercise);}
+
     public int getId() {
         return id;
     }
@@ -59,22 +64,6 @@ public class Workoutb {
         this.name = name;
     }
 
-//    public String getWorkoutType() {
-//        return workoutType;
-//    }
-//
-//    public void setWorkoutType(String workoutType) {
-//        this.workoutType = workoutType;
-//    }
-//
-//    public String getTargetMuscles() {
-//        return targetMuscles;
-//    }
-//
-//    public void setTargetMuscles(String targetMuscles) {
-//        this.targetMuscles = targetMuscles;
-//    }
-
     public String getWorkoutDescription() {
         return workoutDescription;
     }
@@ -83,14 +72,6 @@ public class Workoutb {
         this.workoutDescription = workoutDescription;
     }
 
-//    public List<Exercise> getExerciseList() {
-//        return exerciseList;
-//    }
-
-//    public void setExerciseList(List<Exercise> exerciseList) {
-//        this.exerciseList = exerciseList;
-//    }
-
 
     public String getWorkoutDetails() {
         return workoutDetails;
@@ -98,6 +79,11 @@ public class Workoutb {
 
     public void setWorkoutDetails(String workoutDetails) {
         this.workoutDetails = workoutDetails;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 
     @Override

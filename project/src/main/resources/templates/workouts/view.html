@@ -32,10 +32,10 @@
 
 
         <div class="exercise-actions">
-            <a th:href="@{'/workout/addExercise/' + ${workoutb.id}}"><button>Add Exercise</button></a>
-            <a th:href="@{'/workout/deleteExercise/' + ${workoutb.id}}"><button>Delete Exercise</button></a>
-            <a th:href="@{'/workout/deleteWorkout/' + ${workoutb.id}}"><button>Delete Workout</button></a>
-            <a th:href="@{'/workout/editWorkout/' + ${workoutb.id}}"><button>Edit Workout</button></a>
+            <a th:href="@{'/workouts/addExercise?workoutbId=' + ${workoutb.id}}"><button>Add Exercise</button></a>
+            <a th:href="@{'/workouts/deleteExercise/' + ${workoutb.id}}"><button>Delete Exercise</button></a>
+            <a th:href="@{'/workouts/deleteWorkout/' + ${workoutb.id}}"><button>Delete Workout</button></a>
+            <a th:href="@{'/workouts/editWorkout/' + ${workoutb.id}}"><button>Edit Workout</button></a>
         </div>
     </div>
 </div>
