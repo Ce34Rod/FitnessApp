@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title>Lancer's Fitness</title>
+</head>
+<body>
+
+<div th:replace="~{fragments :: top-bar}" class="top-bar">
+</div>
+<div th:replace="~{fragments :: mini-guide}"></div>
+
+<h2 th:if="${records} and ${records.size()}" class="BigNBold">Tracked Variables</h2>
+
+<form method="post">
+
+    <th:block th:each="record : ${records}">
+        <div>
+            <label>
+                <span th:text="${record.name}"></span>
+                <input type="checkbox" name="recordIds" th:value="${record.id}" >
+            </label>
+        </div>
+    </th:block>
+
+    <input type="submit" value="Delete" class="btn btn-danger">
+</form>
+
+</body>
+</html>

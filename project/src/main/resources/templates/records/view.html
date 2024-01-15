@@ -33,8 +33,9 @@
 </div>
 
 
-<a th:href="@{'/records/createDataPoint/' + ${record.id}}">Add Data Point</a>
-<a th:href="@{'/records/index'}">Back to All Metrics</a>
+<a th:href="@{'/records/createDataPoint/' + ${record.id}}"><button>Add Data Point</button></a>
+<a th:href="@{'/records/deleteDataPoint/' + ${record.id}}" class="workout-entry"><button>Delete Data Point/s</button></a>
+<a th:href="@{'/records/index'}"><button>Back to All Metrics</button></a>
 <div  class="footer" th:replace="fragments :: footer"></div>
 </body>
 </html>

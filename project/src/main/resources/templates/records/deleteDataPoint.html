@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title>Lancer's Fitness</title>
+</head>
+<body>
+
+<div th:replace="~{fragments :: top-bar}" class="top-bar">
+</div>
+<div th:replace="~{fragments :: mini-guide}"></div>
+
+<h2 th:if="${dataPoint}" class="BigNBold">Data Points</h2>
+
+<form action="/records/deleteDataPoint" method="post">
+
+    <th:block th:each="dataPoint : ${record.getDataPointsList()}">
+        <div>
+            <label>
+                <span th:text="${dataPoint.date}"></span>
+                <input type="checkbox" name="dataPointIds" th:value="${dataPoint.id}" >
+            </label>
+        </div>
+    </th:block>
+
+    <input type="hidden" id="recordId" name="recordId" th:value="${recordId}" required><br>
+    <input type="submit" value="Delete" class="btn btn-danger">
+</form>
+
+</body>
+</html>

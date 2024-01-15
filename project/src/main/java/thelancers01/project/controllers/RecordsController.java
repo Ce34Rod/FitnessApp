@@ -2,6 +2,7 @@ package thelancers01.project.controllers;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -98,32 +99,65 @@ public String processCreateDataPoint(@RequestParam int recordId, Model model, @M
     if (optionalRecord.isPresent()) {
         Record record = optionalRecord.get();
 
-        // Set the Record in the DataPoint
         dataPoint.setRecord(record);
 
-        // Save the DataPoint
         dataPointRepository.save(dataPoint);
 
         return "redirect:/records/view/" + recordId;
     } else {
-        // Handle the case where the Record with the specified ID is not found
-        // You might redirect to an error page or display an error message
+
         return "redirect:/error";
     }
 }
 
+    @GetMapping("deleteDataPoint/{recordId}")
+    public String deleteDataPoint (@PathVariable int recordId, Model model) {
+        model.addAttribute("dataPoints", dataPointRepository.findById(recordId));
+        Optional<Record> optRecord = recordRepository.findById(recordId);
+        model.addAttribute("recordId", recordId);
+        if (optRecord.isPresent()) {
+            Record record = (Record) optRecord.get();
+            model.addAttribute("record", record);
+            Optional<DataPoint> optDataPoint = dataPointRepository.findById(recordId);
+            if (optDataPoint.isPresent()) {
+                DataPoint dataPoint = (DataPoint) optDataPoint.get();
+                model.addAttribute("dataPoint", dataPoint);
+            }
+            return "records/deleteDataPoint";
+
+        } else {
+            return "redirect:/records/index";
+
+        }
+    }
 
 
-//    private List<DataPoint> fetchDataPoints() {
-//        List<DataPoint> dataPoints = new ArrayList<>();
-//        dataPoints.add(new DataPoint("January 10th", "60 lbs"));
-//        dataPoints.add(new DataPoint("January 12th", "66 lbs"));
-//        dataPoints.add(new DataPoint("January 18th", "54 lbs"));
-//        dataPoints.add(new DataPoint("January 24th", "70 lbs"));
-//        dataPoints.add(new DataPoint("February 4th", "75 lbs"));
-//        Record bicepCurlMax = new Record(dataPoints);
-//
-//        return bicepCurlMax.getDataPointsList();
-//    }
+    @PostMapping("deleteDataPoint")
+    public String postDeleteDataPoint(@RequestParam(required = false) int[] dataPointIds, @RequestParam int recordId){
+        if(dataPointIds!=null){
+            for(int id : dataPointIds){
+                dataPointRepository.deleteById(id);
+            }
+        }
+        return "redirect:/records/view/" + recordId;
+    }
+
+
+
+
+@GetMapping("delete")
+    public String deleteRecords (Model model){
+        model.addAttribute("records", recordRepository.findAll());
+        return "records/delete";
+}
+@PostMapping("delete")
+    public String postDeleteRecords(@RequestParam(required = false) int[] recordIds){
+        if(recordIds!=null){
+            for(int id : recordIds){
+                recordRepository.deleteById(id);
+            }
+        }
+        return "redirect:/records/index";
+}
 
 }

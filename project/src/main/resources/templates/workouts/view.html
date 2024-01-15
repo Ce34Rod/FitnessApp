@@ -22,7 +22,7 @@
 <!--        <ul class="no-bullets">-->
 <!--            <li th:each="exercise : ${workoutb.exercises}">-->
             <th:block th:each="exercise : ${workoutb.exercises}">
-                <a th:href="@{'/exercise/view/' + ${exercise.id}}" th:text="${exercise.getName}"></a>
+                <a th:href="@{'/exercise/view/' + ${exercise.id}}" th:text="${exercise.getName} + ', '"></a>
             </th:block>
 
 <!--
