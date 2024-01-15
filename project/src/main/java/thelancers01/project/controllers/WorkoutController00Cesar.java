@@ -1,11 +1,13 @@
 package thelancers01.project.controllers;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import thelancers01.project.models.ApiExercise;
 import thelancers01.project.models.Exercise;
 import thelancers01.project.models.Workoutb;
 import thelancers01.project.models.data.ExerciseRepository;
@@ -36,17 +38,19 @@ public class WorkoutController00Cesar {
         return "workouts/index";
     }
 
-        @GetMapping("create")
-        public String ViewCreateAnExercise(Model model) {
-
-            model.addAttribute("exercises", exerciseRepository.findAll());
-            model.addAttribute(new Workoutb());
-            return "workouts/create";
-        }
+    @GetMapping("create")
+    public String ViewCreateAnExercise(Model model, HttpSession session) {
+        model.addAttribute("exercises", exerciseRepository.findAll());
+        model.addAttribute(new Workoutb());
+        // Retrieve selected exercises from the session
+        List<ApiExercise> selectedExercises = (List<ApiExercise>) session.getAttribute("selectedExercises");
+        model.addAttribute("selectedExercises", selectedExercises);
+        return "workouts/create";
+    }
 
 
         @PostMapping("create")
-        public String submitForm(@ModelAttribute @Valid Workoutb newWorkout, Model model, @RequestParam List<Integer> exercises) {
+        public String submitForm(@ModelAttribute @Valid Workoutb newWorkout, Model model, @RequestParam(name = "exercises", required = false, defaultValue = "") List<Integer> exercises) {
 
             List<Exercise> exerciseList = (List<Exercise>) exerciseRepository.findAllById(exercises);
             newWorkout.setExercises(exerciseList);
