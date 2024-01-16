@@ -106,7 +106,6 @@ public class ExerciseController {
             List<ApiExercise> selectedExercises = apiRepository.findByNameIn(new ArrayList<>(uniqueExerciseNames));
             session.setAttribute("selectedExercises", selectedExercises);
             System.out.println(selectedExercises.get(0).getName());
-            System.out.println(selectedExercises.get(1).getName());
         }
         return "redirect:/exercise/createApiExercise"; //HIGHLIGHT
     }

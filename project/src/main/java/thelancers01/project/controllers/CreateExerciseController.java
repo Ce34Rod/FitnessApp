@@ -105,7 +105,6 @@ public class CreateExerciseController {
         selectedExercises.addAll(nonDuplicateExercises);
 
         System.out.println(selectedExercises.get(0).getName());
-        System.out.println(selectedExercises.get(1).getName());
         model.addAttribute("selectedExercises", selectedExercises);
         model.addAttribute(new Exercise());
         return "exercise/createApiExercise";
