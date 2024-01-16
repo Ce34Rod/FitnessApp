@@ -9,56 +9,52 @@
 <div th:replace="~{fragments :: top-bar}" class="top-bar">
 </div>
 <div th:replace="~{fragments :: mini-guide}"></div>
-<h2 class="create">Create A New Workout</h2>
+<h2 class="create">Save Searched Exercises </h2>
 <div>
     <img src="/images/Ad.jpeg" alt="Advertisement Image" class="ad">
 </div>
 
 <div>
     <div class="exercises">
-        <form class="createWorkout" action="/createApiEexercise" th:object="${exercise}" method="post"> //HIGHLIGHT
+        <form class="createWorkout" action="/exercise/createApiExercise" th:object="${exercise}" method="post"> //HIGHLIGHT
 
             <div class="exercises">
                 <label class="BigNBold" th:for="exercises">Exercises: </label>
 
                 <th:block th:each="selectedExercise, iterStat : ${selectedExercises}">
                     <label th:text="'Name: ' + ${selectedExercise.name}" th:if="${iterStat.index == 0}"></label>
+                    <input type="hidden" name="name" th:value="${selectedExercise.name}" th:if="${iterStat.index == 0}" required><br>
+
+
                     <label th:text="'Type: ' + ${selectedExercise.type}" th:if="${iterStat.index == 0}"></label>
+                    <input type="hidden" name="exerciseType" th:value="${selectedExercise.type}" th:if="${iterStat.index == 0}" required><br>
+
+
                     <label th:text="'Muscle: ' + ${selectedExercise.muscle}" th:if="${iterStat.index == 0}"></label>
+                    <input type="hidden" name="targetMuscles" th:value="${selectedExercise.muscle}" th:if="${iterStat.index == 0}" required><br>
+
+
                     <label th:text="'Notes (Optional): '" th:if="${iterStat.index == 0}"></label>
-                    <textarea name="exerciseNotes" rows="4" th:if="${iterStat.index == 0}" required></textarea><br>
+                    <textarea name="exerciseNotes" rows="4" th:if="${iterStat.index == 0}" required></textarea>
                 </th:block>
 
-                <th:block th:each="selectedExercise, iterStat : ${selectedExercises}">
-                    <label th:text="'Name: ' + ${selectedExercise.name}" th:if="${iterStat.index == 1}"></label>
-                    <label th:text="'Type: ' + ${selectedExercise.type}" th:if="${iterStat.index == 1}"></label>
-                    <label th:text="'Muscle: ' + ${selectedExercise.muscle}" th:if="${iterStat.index == 1}"></label>
-                        <label th:text="'Notes (Optional): '" th:if="${iterStat.index == 1}"></label>
-                        <textarea name="exerciseNotes" rows="4" th:if="${iterStat.index == 1}" required></textarea><br>
-                </th:block>
+<!--                <th:block th:each="selectedExercise, iterStat : ${selectedExercises}">-->
+<!--                    <label th:text="'Name: ' + ${selectedExercise.name}" th:if="${iterStat.index == 1}"></label>-->
+<!--                    <input type="hidden" name="name" th:value="${selectedExercise.name}" th:if="${iterStat.index == 1}" required><br>-->
 
-                <!--                <th:block th:each="selectedExercise : ${selectedExercises}">-->
-<!--                <label th:text="'Name: ' + ${selectedExercise.name}"></label>-->
+
+<!--                    <label th:text="'Type: ' + ${selectedExercise.type}" th:if="${iterStat.index == 1}"></label>-->
+<!--                    <input type="hidden" name="exerciseType" th:value="${selectedExercise.type}" th:if="${iterStat.index == 1}" required><br>-->
+
+
+<!--                    <label th:text="'Muscle: ' + ${selectedExercise.muscle}" th:if="${iterStat.index == 1}"></label>-->
+<!--                    <input type="hidden" name="targetMuscles" th:value="${selectedExercise.muscle}" th:if="${iterStat.index == 1}" required><br>-->
+
+
+<!--                    <label th:text="'Notes (Optional): '" th:if="${iterStat.index == 1}"></label>-->
+<!--                    <textarea name="exerciseNotes" rows="4" th:if="${iterStat.index == 1}" required></textarea>-->
 <!--                </th:block>-->
 
-<!--                <th:block th:each="selectedExercise : ${selectedExercises}">-->
-<!--                    <label th:text="'Type: ' + ${selectedExercise.type}"></label>-->
-<!--                </th:block>-->
-
-<!--                <th:block th:each="selectedExercise : ${selectedExercises}">-->
-<!--                    <label th:text="'Muscle: ' + ${selectedExercise.muscle}"></label>-->
-<!--                </th:block>-->
-
-
-
-
-
-
-<!--                <th:block th:each="selectedExercise : ${selectedExercises}">-->
-<!--                    <label class="BigNBold">-->
-<!--                        <input type="checkbox" name="exercises" th:value="${selectedExercise.id}" th:text="${' ' + selectedExercise.name + '  '}">-->
-<!--                    </label>-->
-<!--                </th:block>-->
             </div>
             <input type="submit" value="Save to Exercises">
         </form>
