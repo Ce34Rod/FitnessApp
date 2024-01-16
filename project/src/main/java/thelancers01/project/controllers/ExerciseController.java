@@ -1,6 +1,7 @@
 package thelancers01.project.controllers;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -10,12 +11,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import thelancers01.project.models.ApiExercise;
+import thelancers01.project.models.Exercise;
 import thelancers01.project.models.Workout;
 import thelancers01.project.models.data.ApiRepository;
 import thelancers01.project.models.data.ExerciseRepository;
@@ -102,7 +105,13 @@ public class ExerciseController {
             Set<String> uniqueExerciseNames = new HashSet<>(selectedExerciseNames);
             List<ApiExercise> selectedExercises = apiRepository.findByNameIn(new ArrayList<>(uniqueExerciseNames));
             session.setAttribute("selectedExercises", selectedExercises);
+            System.out.println(selectedExercises.get(0).getName());
+            System.out.println(selectedExercises.get(1).getName());
         }
-        return "redirect:/workouts/create";
+        return "redirect:/exercise/createApiExercise"; //HIGHLIGHT
     }
+
+
+
+
 }

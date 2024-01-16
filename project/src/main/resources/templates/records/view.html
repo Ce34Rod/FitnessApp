@@ -24,8 +24,9 @@
         <tbody>
         <tr th:each="dataPoint : ${record.getDataPointsList()}">
 <!--            <td th:text="${dataPoint.id}"></td>-->
-            <td th:text="${dataPoint.value}"></td>
             <td th:text="${dataPoint.date}"></td>
+            <td th:text="${dataPoint.value}"></td>
+
 
         </tr>
         </tbody>

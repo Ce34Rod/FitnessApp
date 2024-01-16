@@ -7,9 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import thelancers01.project.models.ApiExercise;
-import thelancers01.project.models.Exercise;
-import thelancers01.project.models.Workoutb;
+import thelancers01.project.models.*;
+import thelancers01.project.models.Record;
 import thelancers01.project.models.data.ExerciseRepository;
 import thelancers01.project.models.data.WorkoutRepository00Cesar;
 import thelancers01.project.models.dto.WorkoutExerciseDTO;
@@ -106,7 +105,72 @@ public class WorkoutController00Cesar {
         }
 
 
-        @GetMapping("delete")
+//    @GetMapping("deleteExercise/{workoutbId}")
+//    public String deleteExercise (@PathVariable int workoutbId, Model model) {
+//
+//        model.addAttribute("exercises", exerciseRepository.findById(workoutbId));
+//        Optional<Workoutb> optWorkoutb = workoutRepository00Cesar.findById(workoutbId);
+//        model.addAttribute("workoutbId", workoutbId);
+//        if (optWorkoutb.isPresent()) {
+//            Workoutb workoutb = (Workoutb) optWorkoutb.get();
+//            model.addAttribute("workoutb", workoutb);
+//            Optional<Exercise> optionalExercise = exerciseRepository.findById(workoutbId);
+//            if (optionalExercise.isPresent()) {
+//                Exercise exercise = (Exercise) optionalExercise.get();
+//                model.addAttribute("exercise", exercise);
+//            }
+//            return "workouts/deleteExercise";
+//
+//        } else {
+//            return "redirect:/workouts/index";
+//
+//        }
+//    }
+
+
+    @GetMapping("deleteExercise/{workoutbId}")
+    public String deleteExercise(@PathVariable int workoutbId, Model model) {
+        Optional<Workoutb> optWorkoutb = workoutRepository00Cesar.findById(workoutbId);
+        if (optWorkoutb.isPresent()) {
+            Workoutb workoutb = optWorkoutb.get();
+            model.addAttribute("workoutb", workoutb);
+            model.addAttribute("workoutbId", workoutbId);
+            Optional<Exercise> optionalExercise = exerciseRepository.findById(workoutbId);
+
+
+            model.addAttribute("exercises", workoutb.getExercises());
+            WorkoutExerciseDTO workoutExerciseDTO = new WorkoutExerciseDTO();
+            workoutExerciseDTO.setWorkoutb(workoutb);
+            model.addAttribute("workoutExercise", workoutExerciseDTO);
+
+            return "workouts/deleteExercise";
+        } else {
+            return "redirect:/workouts/index";
+        }
+    }
+
+
+
+    @PostMapping("deleteExercise")
+    public String postDeleteExercise(@RequestParam(required = false) int[] exerciseIds,
+                                     @RequestParam int workoutbId, @ModelAttribute @Valid
+                                         WorkoutExerciseDTO workoutExercise, Errors errors, Model model){
+        if (!errors.hasErrors()) {
+            Workoutb workoutb = workoutExercise.getWorkoutb();
+            for (int id : exerciseIds) {
+                // Find the Exercise by its ID or however you handle it
+                Exercise exercise = exerciseRepository.findById(id).orElse(null);
+                if (exercise != null && workoutb.getExercises().contains(exercise)) {
+                    workoutb.deleteExercise(exercise);
+                }
+            }
+            workoutRepository00Cesar.save(workoutb);
+        }
+        return "redirect:/workouts/view/" + workoutbId;
+    }
+
+
+    @GetMapping("delete")
     public String deleteWorkout(Model model) {
             model.addAttribute("title", "Delete Workouts");
             model.addAttribute("workouts", workoutRepository00Cesar.findAll());

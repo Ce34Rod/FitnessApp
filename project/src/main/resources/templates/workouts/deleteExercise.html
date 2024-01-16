@@ -10,20 +10,20 @@
 </div>
 <div th:replace="~{fragments :: mini-guide}"></div>
 
-<h2 th:if="${dataPoint}" class="BigNBold">Data Points</h2>
+<h2 th:if="${exercise}" class="BigNBold">Exercises</h2>
 
-<form action="/records/deleteDataPoint" method="post">
-
-    <th:block th:each="dataPoint : ${record.getDataPointsList()}">
+<form action="/workouts/deleteExercise" method="post">
+    <input type="hidden" th:field="${workoutExercise.workoutb}">
+    <th:block th:each="exercise : ${workoutb.getExercises()}">
         <div>
             <label>
-                <input type="checkbox" name="dataPointIds" th:value="${dataPoint.id}" >
-                <span th:text="${dataPoint.date} + '-----' + ${dataPoint.value}"></span>
+                <input type="checkbox" name="exerciseIds" th:value="${exercise.id}" >
+                <span th:text="${exercise.name}"></span>
             </label>
         </div>
     </th:block>
 
-    <input type="hidden" id="recordId" name="recordId" th:value="${recordId}" required><br>
+    <input type="hidden" id="workoutbId" name="workoutbId" th:value="${workoutbId}" required><br>
     <input type="submit" value="Delete" class="btn btn-danger">
 </form>
 

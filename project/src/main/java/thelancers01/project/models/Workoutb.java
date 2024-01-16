@@ -52,6 +52,8 @@ public class Workoutb {
 
     public void addExercise(Exercise exercise){this.exercises.add(exercise);}
 
+    public void deleteExercise(Exercise exercise){this.exercises.remove(exercise);}
+
     public int getId() {
         return id;
     }
