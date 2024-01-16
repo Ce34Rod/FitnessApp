@@ -16,10 +16,10 @@
 
 <div>
     <div class="exercises">
-        <form class="createWorkout" action="/exercise/createApiExercise" th:object="${exercise}" method="post"> //HIGHLIGHT
+        <form class="createWorkout" action="/exercise/createApiExercise" th:object="${exercise}" method="post">
 
             <div class="exercises">
-                <label class="BigNBold" th:for="exercises">Exercises: </label>
+                <label class="BigNBold" th:for="exercises">Exercise: </label>
 
                 <th:block th:each="selectedExercise, iterStat : ${selectedExercises}">
                     <label th:text="'Name: ' + ${selectedExercise.name}" th:if="${iterStat.index == 0}"></label>
