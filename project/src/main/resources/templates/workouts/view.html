@@ -15,14 +15,14 @@
 <div class="main-content">
     <h1 th:text="${workoutb.name}">No Title</h1>
 
-    <div>
-        <p th:text="${'Description: ' + workoutb.getWorkoutDescription}"></p>
-        <p th:text="${'Details:  ' + workoutb.getWorkoutDetails}"></p>
-        <p class="inline" >Exercises:</p>
+    <div class="exercise-details">
+        <p th:text="${'Description: ' + workoutb.getWorkoutDescription}" class="exercise-entry"></p>
+        <p th:text="${'Details:  ' + workoutb.getWorkoutDetails}" class="exercise-entry"></p>
+        <p class="inline">Exercises:</p>
 <!--        <ul class="no-bullets">-->
 <!--            <li th:each="exercise : ${workoutb.exercises}">-->
             <th:block th:each="exercise : ${workoutb.exercises}">
-                <a th:href="@{'/exercise/view/' + ${exercise.id}}" th:text="${exercise.getName} + ', '"></a>
+                <a th:href="@{'/exercise/view/' + ${exercise.id}}" th:text="${exercise.getName} + '- '"></a>
             </th:block>
 
 <!--
@@ -34,7 +34,7 @@
         <div class="exercise-actions">
             <a th:href="@{'/workouts/addExercise?workoutbId=' + ${workoutb.id}}"><button>Add Exercise</button></a>
             <a th:href="@{'/workouts/deleteExercise/' + ${workoutb.id}}"><button>Delete Exercise</button></a>
-            <a th:href="@{'/workouts/editWorkout/' + ${workoutb.id}}"><button>Edit Workout</button></a>
+<!--            <a th:href="@{'/workouts/editWorkout/' + ${workoutb.id}}"><button>Edit Workout</button></a>-->
         </div>
     </div>
 </div>

@@ -12,10 +12,10 @@
 </div>
 <h1 th:text="${exercise.getName}">No Title</h1>
 <div>
-    <p th:text="${exercise.getTargetMuscles}"></p>
-    <p th:text="${exercise.getExerciseNotes}"></p>
-    <p th:text="${exercise.getExerciseType}"></p>
-    <p> Included in these workouts: </p>
+    <p th:text="'Exercise Type: ' + ${exercise.getExerciseType}" class="exercise-entry"></p>
+    <p th:text="'Target Muscle/s: ' + ${exercise.getTargetMuscles}" class="exercise-entry"></p>
+    <p th:text="'Exercise Notes: ' + ${exercise.getExerciseNotes}" class="exercise-entry"></p>
+    <p class="exercise-entry"> Included in these workouts: </p>
     <ul>
         <li th:each="workoutb : ${exercise.workoutbs}">
             <a th:href="@{'/workouts/view/' + ${workoutb.id}}" th:text="${workoutb.name}"></a>

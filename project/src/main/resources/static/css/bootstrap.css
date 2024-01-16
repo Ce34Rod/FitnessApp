@@ -371,6 +371,10 @@ margin-top: 20px;
 }
 
 p.inline {
+text-size: 40px;
+text-weight: bold;
+ text-decoration: none;
+ color: #fff;
 display: inline;
 padding: 0;
 margin-top: 0;
@@ -435,6 +439,7 @@ text-weight: bold;
  text-decoration: none;
  color: #fff;
  text-align: center;
+
  padding: 10px;
  margin-bottom: 10px;
  transition: background-color 0.3s ease;

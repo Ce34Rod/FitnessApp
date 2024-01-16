@@ -15,7 +15,7 @@
 
 <section class="All-User-Exercises-Header">
     <h1 th:if="${exercises} and ${exercises.size()}">All User Exercises</h1>
-    <p class="User-Exercises-Detail">Add your exercises to your workout plan or delete ones you are no longer interested in.</p>
+<!--    <p class="User-Exercises-Detail">Add your exercises to your workout plan or delete ones you are no longer interested in.</p>-->
 </section>
 
 <form th:action="@{/update-workout}" method="post">
@@ -38,11 +38,11 @@
         <hr>
     </div>
 
-    <section class="Exercise-Buttons">
-        <button type="submit" name="action" value="add" class="btn btn-submit">Add Selected to Workout</button>
-        <button type="submit" name="action" value="delete" class="btn btn-danger">Delete Selected</button>
-        <a th:href="@{/exercise/delete}" class="btn btn-danger">Delete Saved Exercises</a>
-    </section>
+<!--    <section class="Exercise-Buttons">-->
+<!--        <button type="submit" name="action" value="add" class="btn btn-submit">Add Selected to Workout</button>-->
+<!--        <button type="submit" name="action" value="delete" class="btn btn-danger">Delete Selected</button>-->
+<!--        <a th:href="@{/exercise/delete}" class="btn btn-danger">Delete Saved Exercises</a>-->
+<!--    </section>-->
 </form>
 
 <div class="create-exercise-button">
