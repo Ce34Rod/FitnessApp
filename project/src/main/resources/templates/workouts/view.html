@@ -13,11 +13,11 @@
 </div>
 
 <div class="main-content">
-    <h1 th:text="${workoutb.name}">No Title</h1>
+    <h2 class="BigNBold" th:text="${workoutb.name}">No Title</h2>
 
     <div class="exercise-details">
-        <p th:text="${'Description: ' + workoutb.getWorkoutDescription}" class="exercise-entry"></p>
-        <p th:text="${'Details:  ' + workoutb.getWorkoutDetails}" class="exercise-entry"></p>
+        <p th:text="${'Description: ' + workoutb.getWorkoutDescription}" class="exercise-entry1"></p>
+        <p th:text="${'Details:  ' + workoutb.getWorkoutDetails}" class="exercise-entry1"></p>
         <p class="inline">Exercises:</p>
 <!--        <ul class="no-bullets">-->
 <!--            <li th:each="exercise : ${workoutb.exercises}">-->

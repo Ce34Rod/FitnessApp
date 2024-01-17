@@ -33,11 +33,11 @@
                         <input  type="checkbox" name="exercises" th:value="${exercise.id}" th:text="${' ' + exercise.name + '  '}">
                     </label>
                 </th:block>
-                <th:block th:each="selectedExercise : ${selectedExercises}">
-                    <label class="BigNBold">
-                        <input type="checkbox" name="exercises" th:value="${selectedExercise.id}" th:text="${' ' + selectedExercise.name + '  '}">
-                    </label>
-                </th:block>
+<!--                <th:block th:each="selectedExercise : ${selectedExercises}">-->
+<!--                    <label class="BigNBold">-->
+<!--                        <input type="checkbox" name="exercises" th:value="${selectedExercise.id}" th:text="${' ' + selectedExercise.name + '  '}">-->
+<!--                    </label>-->
+<!--                </th:block>-->
             </div>
             <input type="submit" value="Save Workout">
         </form>

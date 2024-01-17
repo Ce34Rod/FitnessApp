@@ -429,6 +429,7 @@ h2.BigNBold {
 font-size: 40px;
 font-weight: bold;
 text-align: center;
+text-decoration: underline;
 padding-top: 40px;
 padding-bottom: 40px;
 }
@@ -444,6 +445,20 @@ text-weight: bold;
  margin-bottom: 10px;
  transition: background-color 0.3s ease;
         }
+
+
+p.exercise-entry1 {
+  font-size: 23px; /* Increase the font size by 20% */
+  text-decoration: none;
+  color: #fff;
+  text-align: left;
+  padding: 10px;
+  margin-top: 50px; /* Add more margin at the top */
+  margin-bottom: 10px;
+  margin-right: 200px;
+  transition: background-color 0.3s ease;
+}
+
 
 .exercise-entry:hover {
  text-decoration: none;
