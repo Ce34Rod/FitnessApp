@@ -377,7 +377,7 @@ text-weight: bold;
  color: #fff;
 display: inline;
 padding: 0;
-margin-top: 0;
+margin-top: 40px;
 margin-bottom: 0;
 }
 
@@ -459,7 +459,7 @@ p.exercise-entry1 {
   color: #fff;
   text-align: left;
   padding: 10px;
-  margin-top: 50px; /* Add more margin at the top */
+  margin-top: 30px; /* Add more margin at the top */
   margin-bottom: 10px;
   margin-right: 200px;
   transition: background-color 0.3s ease;
