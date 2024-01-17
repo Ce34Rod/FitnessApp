@@ -406,9 +406,15 @@ font-weight: bold;
 form.createWorkout {
 margin: -340px 500px 90px 0px;
 }
+form.createWorkout1 {
+margin: -240px 500px 90px 0px;
+}
 
 img.ad {
 margin: 100px 0px 0px 500px;
+}
+img.ad1 {
+margin: 10px 0px 0px 500px;
 }
 
 .workout-entry {
