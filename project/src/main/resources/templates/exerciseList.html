@@ -5,17 +5,11 @@
     <title>Exercise Search - Lancer's Fitness</title>
 </head>
 <body>
+<div th:replace="~{fragments :: top-bar}" class="top-bar">
+</div>
 <div th:replace="~{fragments :: mini-guide}"></div>
 
-<div class="top-bar">
-    <h1>Lancer's Fitness</h1>
-    <div class="account-actions">
-        <a th:href="@{/userExercises}" class="btn btn-info">User Exercises</a>
-        <a th:href="@{/dashboard}" class="btn btn-info">Dashboard</a>
-        <a th:href="@{/account}" class="btn btn-info">Manage Account</a>
-        <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
-    </div>
-</div>
+
 <h2 class="create">Search For An Exercise</h2>
 <div>
     <img src="/images/Ad.jpeg" alt="Advertisement Image" class="ad1">
@@ -25,10 +19,10 @@
 
 
 <form th:action="@{/search}" method="get" class="createWorkout1">
-    <label for="name">Name:</label>
+    <label for="name" class="white">Name:</label>
     <input type="text" id="name" name="name" th:value="${name}" /><br>
 
-    <label for="type">Type:</label>
+    <label for="type" class="white">Type:</label>
     <select id="type" name="type" th:value="${type}">
         <option value="">-- Select Type --</option>
         <option value="cardio">Cardio</option>
@@ -40,7 +34,7 @@
         <option value="strongman">Strongman</option>
     </select>
 
-    <label for="muscle">Muscle:</label>
+    <label for="muscle" class="white">Muscle:</label>
     <select id="muscle" name="muscle" th:value="${muscle}">
         <option value="">-- Select Muscle --</option>
         <option value="abdominals">Abdominals</option>
@@ -61,7 +55,7 @@
         <option value="triceps">Triceps</option>
     </select>
 
-    <label for="difficulty">Difficulty:</label>
+    <label for="difficulty" class="white">Difficulty:</label>
     <select id="difficulty" name="difficulty" th:value="${difficulty}">
         <option value="">-- Select Difficulty --</option>
         <option value="beginner">Beginner</option>
@@ -69,17 +63,17 @@
         <option value="expert">Expert</option>
     </select>
 
-    <button type="submit">Search</button>
+    <button type="submit" class="btn btn-light">Search</button>
 </form>
 
 
 <div th:if="${apiExercises != null}" style="text-align: center;">
-    <h2 style="color: black; font-weight: bold;">Results:</h2>
+    <h2>Results:</h2>
 
     <form th:action="@{/addToWorkout}" method="post" id="addToWorkoutForm">
 
 
-            <label for="selectedExerciseNames">Select Exercise:</label>
+            <label for="selectedExerciseNames" class="white">Select Exercise:</label>
             <select name="selectedExerciseNames" id="selectedExerciseNames">
                 <option th:each="apiExercise : ${apiExercises}" th:value="${apiExercise.name}" th:text="${apiExercise.name}"></option>
             </select>
@@ -96,7 +90,7 @@
 <!--                </label>-->
 <!--            </li>-->
 <!--        </ul>-->
-        <button type="submit">Add to Your Exercises</button>
+        <button type="submit" class="btn btn-light">Add to Your Exercises</button>
     </form>
 </div>
 
@@ -113,7 +107,7 @@
 
 
 <div class="create-exercise-button" style="text-align: center; margin-bottom: 280px;">
-    <a th:href="@{/exercise/create}" class="btn btn-primary">Can't find your exercise? Create one here!</a>
+    <a th:href="@{/exercise/create}" class="btn btn-light">Can't find your exercise? Create one here!</a>
 </div>
 <div class="footer" th:replace="fragments :: footer"></div>
 

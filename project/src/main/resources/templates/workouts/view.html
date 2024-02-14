@@ -5,7 +5,7 @@
     <title>Your Workouts</title>
 
 </head>
-<body class="container body-content">
+<body>
 <div th:replace="~{fragments :: top-bar}" class="top-bar">
 </div>
 
@@ -18,18 +18,10 @@
     <div class="exercise-details">
         <p th:text="${'Description: ' + workoutb.getWorkoutDescription}" class="exercise-entry1"></p>
         <p th:text="${'Details:  ' + workoutb.getWorkoutDetails}" class="exercise-entry1"></p>
-        <p class="inline">Exercises:</p>
-<!--        <ul class="no-bullets">-->
-<!--            <li th:each="exercise : ${workoutb.exercises}">-->
+        <p class="exercise-entry1">Exercises:</p>
             <th:block th:each="exercise : ${workoutb.exercises}">
-                <a th:href="@{'/exercise/view/' + ${exercise.id}}" th:text="${exercise.getName} + '- '"></a>
+                <a th:href="@{'/exercise/view/' + ${exercise.id}}" class="exercise-entry1" th:text="'- ' + ${exercise.getName}"></a>
             </th:block>
-
-<!--
-
-</li>-->
-<!--        </ul>-->
-
 
         <div class="exercise-actions">
             <a th:href="@{'/workouts/addExercise?workoutbId=' + ${workoutb.id}}"><button>Add Exercise</button></a>
