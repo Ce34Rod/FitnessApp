@@ -29,12 +29,22 @@ color: black;
 }
 
 .footer {
-    flex-shrink: 0;
-
-    background-color: #1C0D14;
+    color: #dae0eb;
+    /*position: absolute;*/
+    bottom: 0;
+    height: 2.5rem;
     text-align: center;
-    padding: 10px 0;
+    margin-top: 600px;
     width: 100%;
+}
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+#content-wrap {
+  padding-bottom: 2.5rem;    /* Footer height */
 }
 
 .top-bar {
@@ -42,11 +52,12 @@ color: black;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background-color: #1C0D14;
+    /*background-color: #1C0D14;*/
     width: 100%;
 }
 .top-bar h1 {
-    font-family:  Impact,Haettenschweiler,Franklin Gothic Bold,Charcoal,Helvetica Inserat,Bitstream Vera Sans Bold,Arial Black,sans serif;
+    font-family: "Goudy Bookletter 1911", sans-serif;
+    color: #dae0eb;
     margin: 0;
 }
 
@@ -61,6 +72,7 @@ color: black;
 }
 .feature {
     text-align: center;
+    color: #dae0eb;
     padding: 20px;
 }
 
@@ -78,6 +90,7 @@ color: black;
 }
 
 .feature-image {
+    color: #dae0eb;
     max-width: 75px;
     width: 100%;
     height: auto;
@@ -337,31 +350,31 @@ th {
 
 
 .mini-guide {
-            width: 120px;
-            background-color: #333;
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            align-items: left;
-            padding-top: 10px;
-            position:absolute;
-            left:10px;
-            top:80px;
-            margin-top: 100px;
-        }
+    width: 120px;
+    background-color: #300407;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    padding-top: 10px;
+    position:absolute;
+    left:10px;
+    top:80px;
+    margin-top: 100px;
+}
 
-        .mini-guide-entry {
-            text-decoration: none;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            margin-bottom: 10px;
-            transition: background-color 0.3s ease;
-        }
+.mini-guide-entry {
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
 
-        .mini-guide-entry:hover {
-            background-color: #555;
-        }
+.mini-guide-entry:hover {
+    background-color: #555;
+}
 .container {
 text-align: center;
 }
@@ -477,4 +490,17 @@ text-align: left;
 .create-container{
 margin: -340px 500px 90px 0px;
 
+}
+
+.btn-light {
+margin-top: 25px;
+}
+
+
+h2{
+color: #dae0eb;
+}
+
+h1 {
+color: #dae0eb;
 }

@@ -5,13 +5,14 @@
     <title>Your Workouts</title>
 </head>
 <body>
+
 <div th:replace="~{fragments :: top-bar}"></div>
 
 <div th:replace="~{fragments :: mini-guide}"></div>
 <div>
     <p th:unless="${workouts} and ${workouts.size()}">You have no saved workouts.</p>
     <div>
-        <h2 th:if="${workouts} and ${workouts.size()}" class="BigNBold">Workouts</h2>
+        <h2 th:if="${workouts} and ${workouts.size()}">Workouts</h2>
         <ul class="no-bullets">
             <li th:each="workoutb : ${workouts}" class="BigNBold">
                 <a th:href="@{'/workouts/view/' + ${workoutb.id}}" th:text="${workoutb.name}" class="workout-entry"></a>
@@ -24,6 +25,7 @@
     </div>
 
 </div>
-<div class="footer" th:replace="fragments :: footer"></div>
+
+<div th:replace="fragments :: footer"></div>
 </body>
 </html>
