@@ -3,6 +3,7 @@ body, html {
 }
 body {
     display: flex;
+    color: white;
     flex-direction: column;
     background-color: #1C0D14;
     min-height: 100vh;
@@ -370,7 +371,8 @@ th {
 
 .mini-guide-entry {
     text-decoration: none;
-    color: #300407;
+    text-color: white;
+    color: white;
     text-align: center;
     padding: 10px;
     margin-bottom: 10px;
@@ -519,6 +521,9 @@ margin-top: 25px;
 h2{
 color: #dae0eb;
 }
+
+h2.default{
+color: black;}
 
 h1 {
 color: #dae0eb;

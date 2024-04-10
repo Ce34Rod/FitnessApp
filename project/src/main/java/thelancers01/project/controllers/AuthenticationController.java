@@ -41,6 +41,7 @@ public class AuthenticationController {
 
     private static void setUserInSession(HttpSession session, User user) {
         session.setAttribute(userSessionKey, user.getId());
+        System.out.println(userSessionKey+user.getId());
     }
 
     @GetMapping("/register")
