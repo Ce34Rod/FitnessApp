@@ -22,7 +22,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="dataPoint : ${record.getDataPointsList()}">
+        <tr class="recordTracking" th:each="dataPoint : ${record.getDataPointsList()}">
 <!--            <td th:text="${dataPoint.id}"></td>-->
             <td th:text="${dataPoint.date}"></td>
             <td th:text="${dataPoint.value}"></td>

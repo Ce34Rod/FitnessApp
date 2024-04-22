@@ -339,6 +339,7 @@ label {
  table {
         border-collapse: collapse;
         width: 100%;
+        color: black;
     }
 
 th, td {
@@ -347,8 +348,14 @@ th, td {
         text-align: left;
     }
 
+td {
+        color: white
+
+}
+
 th {
         background-color: #f2f2f2;
+        color: black
     }
 
  h1 {
@@ -456,7 +463,6 @@ h2.BigNBold {
 font-size: 40px;
 font-weight: bold;
 text-align: center;
-text-decoration: underline;
 padding-top: 40px;
 padding-bottom: 40px;
 }
@@ -528,4 +534,8 @@ color: black;}
 
 h1 {
 color: #dae0eb;
+}
+
+label {
+color: white
 }
