@@ -88,7 +88,7 @@ public class ExerciseController {
                 }
                 model.addAttribute("apiExercises", exercises);
             }
-            return "exerciseList";
+            return "search";
         } catch (HttpClientErrorException e) {
             System.err.println("Error response from API: " + e.getRawStatusCode() + " " + e.getResponseBodyAsString());
             return "error";

@@ -1,44 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments :: head">
+<head th:replace="~{fragments :: head}">
     <meta charset="UTF-8"/>
-    <title></title>
+    <title>Exercise Search - Lancer's Fitness</title>
 </head>
 <body>
+<div th:replace="~{fragments :: top-bar}" class="top-bar">
+</div>
 <div th:replace="~{fragments :: mini-guide}"></div>
-<div class="top-bar">
-    <h1>Lancer's Fitness</h1>
-    <div class="account-actions">
-        <a th:href="@{/account}" class="btn btn-info">Manage Account</a>
-        <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
-    </div>
+
+
+<h2 class="create">Search For An Exercise</h2>
+<div>
+    <img src="/images/Ad.jpeg" alt="Advertisement Image" class="ad1">
 </div>
 
-</body>
 
 
 
-<body>
-<div class="topnav">
-    <a class="active" href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-    <div class="search-container">
-        <form action="/action_page.php">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-    </div>
-</div>
-
-<div style="padding-left:16px">
-    <h2>Search for Workouts</h2>
-</div>
-<form th:action="@{/search}" method="get" style="text-align: center;">
-    <label for="name">Name:</label>
+<form th:action="@{/search}" method="get" class="createWorkout1">
+    <label for="name" class="white">Name:</label>
     <input type="text" id="name" name="name" th:value="${name}" /><br>
 
-    <label for="type">Type:</label>
+    <label for="type" class="white">Type:</label>
     <select id="type" name="type" th:value="${type}">
         <option value="">-- Select Type --</option>
         <option value="cardio">Cardio</option>
@@ -50,7 +34,7 @@
         <option value="strongman">Strongman</option>
     </select>
 
-    <label for="muscle">Muscle:</label>
+    <label for="muscle" class="white">Muscle:</label>
     <select id="muscle" name="muscle" th:value="${muscle}">
         <option value="">-- Select Muscle --</option>
         <option value="abdominals">Abdominals</option>
@@ -71,7 +55,7 @@
         <option value="triceps">Triceps</option>
     </select>
 
-    <label for="difficulty">Difficulty:</label>
+    <label for="difficulty" class="white">Difficulty:</label>
     <select id="difficulty" name="difficulty" th:value="${difficulty}">
         <option value="">-- Select Difficulty --</option>
         <option value="beginner">Beginner</option>
@@ -79,31 +63,53 @@
         <option value="expert">Expert</option>
     </select>
 
-    <button type="submit">Search</button>
+    <button type="submit" class="btn btn-light">Search</button>
 </form>
 
+
 <div th:if="${apiExercises != null}" style="text-align: center;">
-    <h2 style="color: black; font-weight: bold;">Results:</h2>
-    <form action="/search" method="post">
-<!--        <th:block th:each="exercise : ${exercises}">-->
-<!--            <input type="checkbox" name="exercises" th:value="${exercise.id}">-->
-<!--            <label th:text="${exercise.name}"></label>-->
-<!--        </th:block>-->
+    <h2>Results:</h2>
 
-<!--        <ul style="list-style: none; padding: 0;">-->
+    <form th:action="@{/addToWorkout}" method="post" id="addToWorkoutForm">
 
-            <th:block th:each="apiExercise, iterStat : ${apiExercises}">
 
-                <label>
-                    <input type="checkbox" name="exerciseList" th:value="${iterStat.index}"/>
-                </label>
-                <label th:text="${apiExercise.name}"></label>
-            </th:block>
+            <label for="selectedExerciseNames" class="white">Select Exercise:</label>
+            <select name="selectedExerciseNames" id="selectedExerciseNames">
+                <option th:each="apiExercise : ${apiExercises}" th:value="${apiExercise.name}" th:text="${apiExercise.name}"></option>
+            </select>
+
+
+
+
+
+        <!--        <ul style="list-style: none; padding: 0;">-->
+<!--            <li th:each="apiExercise : ${apiExercises}">-->
+<!--                <label>-->
+<!--                    <input type="checkbox" name="selectedExerciseNames" th:value="${apiExercise.name}"/>-->
+<!--                    <span th:text="${apiExercise.name}" style="color: black;"></span>-->
+<!--                </label>-->
+<!--            </li>-->
 <!--        </ul>-->
-        <input type="submit" value="Save Exercise">
+        <button type="submit" class="btn btn-light">Add to Your Exercises</button>
     </form>
 </div>
-<div class="footer" th:replace="fragments :: footer"></div>
-</body>
 
+<div th:if="${selectedExercises != null && not #lists.isEmpty(selectedExercises)}" style="text-align: center;">
+    <h2 style="color: black; font-weight: bold;">Selected Exercises:</h2>
+    <ul style="list-style: none; padding: 0;">
+        <li th:each="selectedExercise : ${selectedExercises}">
+            <span th:text="${selectedExercise.name}" style="color: black;"></span>
+        </li>
+    </ul>
+</div>
+
+
+
+
+<div class="create-exercise-button" style="text-align: center; margin-bottom: 280px;">
+    <a th:href="@{/exercise/create}" class="btn btn-light">Can't find your exercise? Create one here!</a>
+</div>
+<div class="footer" th:replace="fragments :: footer"></div>
+
+</body>
 </html>

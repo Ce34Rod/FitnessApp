@@ -6,7 +6,10 @@
 </head>
 <body>
 <div class="top-bar">
-    <h1>Lancer's Fitness</h1>
+    <a th:href="@{/dashboard}">
+        <h1>Lancer's Fitness</h1>
+    </a>
+
     <div class="account-actions">
         <a th:href="@{/userExercises}" class="btn btn-light">User Exercises</a>
         <a th:href="@{/account}" class="btn btn-light">Manage Account</a>
