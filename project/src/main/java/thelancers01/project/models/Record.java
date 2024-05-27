@@ -58,9 +58,6 @@ public class Record {
         this.id = id;
     }
 
-    public List<DataPoint> getDataPoints() {
-        return dataPoints;
-    }
 
     @Override
     public boolean equals(Object o) {
