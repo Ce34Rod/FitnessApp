@@ -20,8 +20,22 @@ public class Exercise{
     private String exerciseNotes;
     @ManyToMany(mappedBy = "exercises")
     private List<Workoutb> workoutbs = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
     public List<Workoutb> getWorkoutbs() {return workoutbs;}
 
+    public void setWorkoutbs(List<Workoutb> workoutbs) {
+        this.workoutbs = workoutbs;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Exercise(String exerciseName, String exerciseType, String targetMuscles, String exerciseNotes, List<Workoutb> workoutbs) {
         this.exerciseName = exerciseName;

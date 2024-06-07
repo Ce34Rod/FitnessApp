@@ -17,11 +17,6 @@ public class HomeController {
 
     @Autowired
     private ExerciseRepository exerciseRepository;
-    @RequestMapping("userExercises")
-    public String viewAllExercises(Model model){
-//        model.addAttribute("exercises", exercises);
-        model.addAttribute("exercises", exerciseRepository.findAll());
-        return "userExercises";
-    }
+
 
 }

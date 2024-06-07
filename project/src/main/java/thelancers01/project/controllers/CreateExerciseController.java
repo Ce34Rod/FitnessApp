@@ -38,12 +38,15 @@ public class CreateExerciseController {
 
         exerciseRepository.save(newExercise);
 
-        return "redirect:/userExercises";
+        return "redirect:/exercises/index";
     }
 
     @GetMapping("index")
-    public String index (){
-        return "../userExercises";
+    public String index (Model model){
+//        model.addAttribute("exercises", exercises);
+            model.addAttribute("exercises", exerciseRepository.findAll());
+            return "exercise/index";
+
     }
 
     @GetMapping("view/{exerciseId}")
@@ -76,7 +79,7 @@ public class CreateExerciseController {
         for (int id : exerciseIds) {
             try {
                 deleteExerciseService.deleteExercise(id);
-                return "redirect:/userExercises";
+                return "redirect:/exercise/index";
             } catch (IllegalStateException e) {
 
                 model.addAttribute("errorMessage", e.getMessage());
@@ -116,7 +119,7 @@ public class CreateExerciseController {
 
         exerciseRepository.save(newExercise);
 
-        return "redirect:/userExercises";
+        return "redirect:/exercise/index";
     }
 
 
