@@ -1,7 +1,9 @@
 package thelancers01.project.controllers;
 
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,7 +90,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO, Errors errors, HttpServletRequest request, Model model) {
+    public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO, Errors errors, HttpServletRequest request, Model model, HttpServletResponse response) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Log In");
             return "login";
@@ -100,6 +102,13 @@ public class AuthenticationController {
 
         if (theUser != null && theUser.isMatchingPassword(password)) {
             setUserInSession(request.getSession(), theUser);
+            // Create a cookie for the username
+            Cookie usernameCookie = new Cookie("username", theUser.getUsername());
+            usernameCookie.setPath("/"); // Set the path for which the cookie is valid
+            usernameCookie.setMaxAge(60 * 60); // Set cookie to expire in 7 days
+            usernameCookie.setHttpOnly(true); // Optional: Make the cookie HTTP only
+            response.addCookie(usernameCookie);
+
             return "redirect:/dashboard";
         } else {
             errors.rejectValue("password", "login.invalid", "Invalid username or password");

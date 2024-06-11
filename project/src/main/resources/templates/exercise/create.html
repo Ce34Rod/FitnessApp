@@ -39,6 +39,8 @@
             <label th:for="exerciseNotes">Notes</label>
             <textarea id="exerciseNotes" name="exerciseNotes" rows="4" required></textarea><br>
 
+            <input type="hidden" name="username" th:value="${username}">
+
             <button type="submit" class="btn btn-submit">Submit</button>
         </form>
     </div>

@@ -1,14 +1,19 @@
 package thelancers01.project.controllers;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import thelancers01.project.models.ApiExercise;
 import thelancers01.project.models.Exercise;
+import thelancers01.project.models.User;
 import thelancers01.project.models.data.ExerciseRepository;
+import thelancers01.project.models.data.UserRepository;
 import thelancers01.project.service.DeleteExerciseService;
 
 import java.util.*;
@@ -23,31 +28,85 @@ public class CreateExerciseController {
     @Autowired
     private ExerciseRepository exerciseRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @GetMapping("create")
-    public String ViewCreateAnExercise(Model model,  HttpSession session) {
+    public String viewCreateAnExercise(Model model, HttpSession session, HttpServletRequest request)  {
 
         List<ApiExercise> selectedExercises = (List<ApiExercise>) session.getAttribute("selectedExercises");
         model.addAttribute("selectedExercises", selectedExercises);
         model.addAttribute(new Exercise());
+
+
+        // Retrieve the username from cookies
+        String username = getUsernameFromCookies(request.getCookies());
+        if (username != null) {
+            // Add the username to the model
+            model.addAttribute("username", username);
+        }
+
         return "exercise/create";
     }
 
 
-    @PostMapping("create")
-    public String submitForm(@ModelAttribute @Valid Exercise newExercise, Model model) {
 
-        exerciseRepository.save(newExercise);
-
-        return "redirect:/exercises/index";
+    private String getUsernameFromCookies(Cookie[] cookies) {
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("username".equals(cookie.getName())) {
+                    return cookie.getValue();
+                }
+            }
+        }
+        return null;
     }
 
+
+
+    @PostMapping("/create")
+    public String createExercise(
+            @ModelAttribute Exercise exercise,
+            Errors errors,
+            @RequestParam("username") String username,
+            HttpSession session,
+            Model model) {
+
+        if (errors.hasErrors()) {
+            return "exercise/create";
+        }
+
+        // Find the user by username
+        User user = userRepository.findByUsername(username);
+        if (user != null) {
+            // Set the user in the exercise object
+            exercise.setUser(user);
+        } else {
+            // Handle the case where the user is not found (optional)
+            errors.rejectValue("user", "user.notfound", "User not found");
+            return "exercise/create";
+        }
+
+        // Save the exercise to the database
+        exerciseRepository.save(exercise);
+
+        return "redirect:/exercise/index"; // Redirect to the exercise list or another page
+    }
+
+
+
     @GetMapping("index")
-    public String index (Model model){
-//        model.addAttribute("exercises", exercises);
-            model.addAttribute("exercises", exerciseRepository.findAll());
+    public String index (Model model, HttpServletRequest request) {
+        String username = getUsernameFromCookies(request.getCookies());
+        User user = userRepository.findByUsername(username);
+        List<Exercise> exercises = exerciseRepository.findByUser(user);
+        model.addAttribute("exercises", exercises);
+
             return "exercise/index";
 
     }
+
+
 
     @GetMapping("view/{exerciseId}")
     public String displayViewExercise(Model model, @PathVariable int exerciseId) {
