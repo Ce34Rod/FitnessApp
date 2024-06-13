@@ -1,5 +1,6 @@
 package thelancers01.project;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -42,6 +43,27 @@ public class AuthenticationFilter implements HandlerInterceptor {
         }
 
         response.sendRedirect("/homepage");
+        return false;
+    }
+
+
+    private boolean checkNecessaryCookies (HttpServletResponse response, HttpServletRequest request) {
+
+        Cookie[] cookies = request.getCookies();
+
+        // Check if cookies are null (meaning no cookies are present)
+        if (cookies != null) {
+            // Iterate through the cookies
+            for (Cookie cookie : cookies) {
+                // Check if the cookie name matches "username"
+                if ("username".equals(cookie.getName())) {
+                    // Cookie is found
+                    return true;
+                }
+            }
+        }
+
+        // Cookie not found
         return false;
     }
 

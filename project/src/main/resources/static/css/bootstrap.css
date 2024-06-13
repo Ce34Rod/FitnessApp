@@ -153,6 +153,7 @@ label {
 .form-group {
     margin-bottom: 15px;
     font-family: Tahoma,Verdana,Segoe,sans-serif;
+    color: black;
 
 }
 
@@ -538,4 +539,8 @@ color: #dae0eb;
 
 label {
 color: white
+}
+
+.error {
+color: red;
 }

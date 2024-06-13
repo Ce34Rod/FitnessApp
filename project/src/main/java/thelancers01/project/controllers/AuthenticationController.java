@@ -54,7 +54,7 @@ public class AuthenticationController {
         return "register";
     }
     @PostMapping("/register")
-    public String processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO, Errors errors, HttpServletRequest request, Model model) {
+    public String processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO, Errors errors, HttpServletResponse response, HttpServletRequest request, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "register");
             return "register";
@@ -63,7 +63,7 @@ public class AuthenticationController {
         User existingUser = userRepository.findByUsername(registerFormDTO.getUserName());
 
         if (existingUser != null) {
-            errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
+            errors.rejectValue("userName", "username.alreadyexists", "A user with that username already exists");
             model.addAttribute("title", "register");
             return "register";
         }
@@ -79,6 +79,13 @@ public class AuthenticationController {
         User newUser = new User(registerFormDTO.getUserName(), registerFormDTO.getPassword());
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
+
+        Cookie usernameCookie = new Cookie("username", newUser.getUsername());
+        usernameCookie.setPath("/"); // Set the path for which the cookie is valid
+        usernameCookie.setMaxAge(60 * 60); // Set cookie to expire in 7 days
+        usernameCookie.setHttpOnly(true); // Optional: Make the cookie HTTP only
+        response.addCookie(usernameCookie);
+
         return "redirect:/dashboard";
     }
 
@@ -102,7 +109,7 @@ public class AuthenticationController {
 
         if (theUser != null && theUser.isMatchingPassword(password)) {
             setUserInSession(request.getSession(), theUser);
-            // Create a cookie for the username
+            // Create a cookie
             Cookie usernameCookie = new Cookie("username", theUser.getUsername());
             usernameCookie.setPath("/"); // Set the path for which the cookie is valid
             usernameCookie.setMaxAge(60 * 60); // Set cookie to expire in 7 days
@@ -119,7 +126,8 @@ public class AuthenticationController {
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
-        request.getSession().invalidate();
+        request.getSession().getAttribute("JSESSIONID").toString();
+        request.getSession(false).invalidate();
         return "redirect:/";
     }
 

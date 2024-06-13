@@ -94,14 +94,29 @@ public class CreateExerciseController {
     }
 
 
+    // FORGOT I NEED TO CHANGE THE CREATE METHODS IN THE CASE OF A NULL USER
+
 
     @GetMapping("index")
     public String index (Model model, HttpServletRequest request) {
         String username = getUsernameFromCookies(request.getCookies());
-        User user = userRepository.findByUsername(username);
-        List<Exercise> exercises = exerciseRepository.findByUser(user);
-        model.addAttribute("exercises", exercises);
+        if ( username != null) {
 
+            System.out.println(username);
+
+            User user = userRepository.findByUsername(username);
+
+            List<Exercise> exercises = exerciseRepository.findByUser(user);
+
+            for (Exercise exercise : exercises) {
+                System.out.println(exercise.toString());
+            }
+            model.addAttribute("exercises", exercises);
+        } else {
+            List<Exercise> exercises = Collections.emptyList();
+
+            model.addAttribute("exercises", exercises);
+        }
             return "exercise/index";
 
     }

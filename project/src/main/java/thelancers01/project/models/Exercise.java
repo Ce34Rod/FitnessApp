@@ -88,4 +88,17 @@ public class Exercise{
         this.exerciseNotes = exerciseNotes;
     }
 
+
+    @Override
+    public String toString() {
+        return "Exercise{" +
+                "id=" + id +
+                ", exerciseName='" + exerciseName + '\'' +
+                ", exerciseType='" + exerciseType + '\'' +
+                ", targetMuscles='" + targetMuscles + '\'' +
+                ", exerciseNotes='" + exerciseNotes + '\'' +
+                ", workoutbs=" + workoutbs +
+                ", user=" + user +
+                '}';
+    }
 }
