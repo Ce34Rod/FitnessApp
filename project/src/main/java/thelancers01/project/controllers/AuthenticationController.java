@@ -80,11 +80,7 @@ public class AuthenticationController {
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
 
-        Cookie usernameCookie = new Cookie("username", newUser.getUsername());
-        usernameCookie.setPath("/"); // Set the path for which the cookie is valid
-        usernameCookie.setMaxAge(60 * 60); // Set cookie to expire in 7 days
-        usernameCookie.setHttpOnly(true); // Optional: Make the cookie HTTP only
-        response.addCookie(usernameCookie);
+
 
         return "redirect:/dashboard";
     }

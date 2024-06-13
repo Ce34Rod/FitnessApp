@@ -1,6 +1,7 @@
 package thelancers01.project.controllers;
 
 import jakarta.servlet.http.Cookie;
+import thelancers01.project.AuthenticationFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -17,6 +18,8 @@ import thelancers01.project.models.data.UserRepository;
 import thelancers01.project.service.DeleteExerciseService;
 
 import java.util.*;
+
+
 
 
 @Controller
@@ -40,7 +43,7 @@ public class CreateExerciseController {
 
 
         // Retrieve the username from cookies
-        String username = getUsernameFromCookies(request.getCookies());
+        String username = AuthenticationFilter.getUserFromCookies(request.getCookies());
         if (username != null) {
             // Add the username to the model
             model.addAttribute("username", username);
@@ -51,16 +54,6 @@ public class CreateExerciseController {
 
 
 
-    private String getUsernameFromCookies(Cookie[] cookies) {
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if ("username".equals(cookie.getName())) {
-                    return cookie.getValue();
-                }
-            }
-        }
-        return null;
-    }
 
 
 
@@ -94,12 +87,12 @@ public class CreateExerciseController {
     }
 
 
-    // FORGOT I NEED TO CHANGE THE CREATE METHODS IN THE CASE OF A NULL USER
+
 
 
     @GetMapping("index")
     public String index (Model model, HttpServletRequest request) {
-        String username = getUsernameFromCookies(request.getCookies());
+        String username = AuthenticationFilter.getUserFromCookies(request.getCookies());
         if ( username != null) {
 
             System.out.println(username);
@@ -113,9 +106,7 @@ public class CreateExerciseController {
             }
             model.addAttribute("exercises", exercises);
         } else {
-            List<Exercise> exercises = Collections.emptyList();
-
-            model.addAttribute("exercises", exercises);
+            return "redirect:../";
         }
             return "exercise/index";
 
