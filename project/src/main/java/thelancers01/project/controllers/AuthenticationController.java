@@ -106,11 +106,11 @@ public class AuthenticationController {
         if (theUser != null && theUser.isMatchingPassword(password)) {
             setUserInSession(request.getSession(), theUser);
             // Create a cookie
-            Cookie usernameCookie = new Cookie("username", theUser.getUsername());
-            usernameCookie.setPath("/"); // Set the path for which the cookie is valid
-            usernameCookie.setMaxAge(60 * 60); // Set cookie to expire in 7 days
-            usernameCookie.setHttpOnly(true); // Optional: Make the cookie HTTP only
-            response.addCookie(usernameCookie);
+            Cookie userCookie = new Cookie("user", theUser.getUsername());
+            userCookie.setPath("/"); // Set the path for which the cookie is valid
+            userCookie.setMaxAge(60 * 60); // Set cookie to expire in 7 days
+            userCookie.setHttpOnly(true); // Optional: Make the cookie HTTP only
+            response.addCookie(userCookie);
 
             return "redirect:/dashboard";
         } else {
@@ -122,7 +122,6 @@ public class AuthenticationController {
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
-        request.getSession().getAttribute("JSESSIONID").toString();
         request.getSession(false).invalidate();
         return "redirect:/";
     }
