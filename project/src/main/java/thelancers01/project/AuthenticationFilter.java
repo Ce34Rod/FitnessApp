@@ -35,8 +35,16 @@ public class AuthenticationFilter implements HandlerInterceptor {
             return true;
         }
 
-        HttpSession session = request.getSession();
+        Cookie userCookie = new Cookie("user", null);
+        userCookie.setPath("/"); // Set the path for which the cookie is valid
+        userCookie.setMaxAge(60 * 60); // Set cookie to expire in 7 days
+        userCookie.setHttpOnly(true); // Optional: Make the cookie HTTP only
+        response.addCookie(userCookie);
+
+        HttpSession session = request.getSession(false);
         User user = authenticationController.getUserFromSession(session);
+
+        //SELF:I NEED TO CREATE A COOKIE NAMED "user" TO TEST AUTH FILTER
 
         if (user != null) {
             return true;
