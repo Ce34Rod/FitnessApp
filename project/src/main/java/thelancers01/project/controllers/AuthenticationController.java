@@ -121,7 +121,19 @@ public class AuthenticationController {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpServletRequest request) {
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+
+        Cookie cookie = new Cookie("user", null);
+
+        // Set the cookie to expire immediately (set maxAge to 0)
+        cookie.setMaxAge(0);
+
+        // Set the cookie path, make sure it matches the path of the original cookie
+        cookie.setPath("/");
+
+        // Add the cookie to the response
+        response.addCookie(cookie);
+
         request.getSession(false).invalidate();
         return "redirect:/";
     }
