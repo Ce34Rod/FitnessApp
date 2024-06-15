@@ -18,7 +18,10 @@ import thelancers01.project.models.data.UserRepository;
 import thelancers01.project.models.dto.LoginFormDTO;
 import thelancers01.project.models.dto.RegisterFormDTO;
 
+import java.util.Enumeration;
 import java.util.Optional;
+
+import static java.lang.System.out;
 
 @Controller
 public class AuthenticationController {
@@ -43,7 +46,14 @@ public class AuthenticationController {
 
     private static void setUserInSession(HttpSession session, User user) {
         session.setAttribute(userSessionKey, user.getId());
-        System.out.println(userSessionKey+user.getId());
+        out.println(session.getId());
+        Enumeration<String> keys = session.getAttributeNames();
+        while (keys.hasMoreElements()) {
+            String key = keys.nextElement();
+            Object value = session.getAttribute(key);
+            out.println(key + ": " + value + "<br>");
+        }
+        out.println(userSessionKey+user.getId());
     }
 
     @GetMapping("/register")
@@ -105,6 +115,9 @@ public class AuthenticationController {
 
         if (theUser != null && theUser.isMatchingPassword(password)) {
             setUserInSession(request.getSession(), theUser);
+
+            out.println(theUser.getUsername());
+
             // Create a cookie
             Cookie userCookie = new Cookie("user", theUser.getUsername());
             userCookie.setPath("/"); // Set the path for which the cookie is valid
@@ -121,7 +134,7 @@ public class AuthenticationController {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response) {
+    public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
         Cookie cookie = new Cookie("user", null);
 
@@ -135,6 +148,8 @@ public class AuthenticationController {
         response.addCookie(cookie);
 
         request.getSession(false).invalidate();
+
+
         return "redirect:/";
     }
 
