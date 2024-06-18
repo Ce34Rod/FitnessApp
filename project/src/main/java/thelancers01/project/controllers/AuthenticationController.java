@@ -116,7 +116,7 @@ public class AuthenticationController {
         if (theUser != null && theUser.isMatchingPassword(password)) {
             setUserInSession(request.getSession(), theUser);
 
-            out.println(theUser.getUsername());
+            out.println(theUser.getUsername() + "Login cookie");
 
             // Create a cookie
             Cookie userCookie = new Cookie("user", theUser.getUsername());

@@ -50,11 +50,11 @@ public class AuthenticationFilter implements HandlerInterceptor {
 
 
 
-        Cookie userCookie = new Cookie("user", null);
-        userCookie.setPath("/"); // Set the path for which the cookie is valid
-        userCookie.setMaxAge(60 * 60); // Set cookie to expire in 7 days
-        userCookie.setHttpOnly(true); // Optional: Make the cookie HTTP only
-        response.addCookie(userCookie);
+//        Cookie userCookie = new Cookie("user", null);
+//        userCookie.setPath("/"); // Set the path for which the cookie is valid
+//        userCookie.setMaxAge(60 * 60); // Set cookie to expire in 7 days
+//        userCookie.setHttpOnly(true); // Optional: Make the cookie HTTP only
+//        response.addCookie(userCookie);
 
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
